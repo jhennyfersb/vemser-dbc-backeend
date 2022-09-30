@@ -7,14 +7,13 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Qual o salario do funcionario?");
-        Double salario = sc.nextDouble();
+        double salario = sc.nextDouble();
 
         System.out.println("Qual o cargo do funcionario?");
         String cargo = sc.next();
 
         int codigo;
-        Double aumentoSalario;
-
+        double aumentoSalario;
         switch (cargo) {
             case "Gerente" -> {
                 codigo = 101;
@@ -30,7 +29,7 @@ public class Main {
             }
             default -> aumentoSalario = salario * 0.40;
         }
-        Double novoSalario = salario + aumentoSalario;
+        double novoSalario = salario + aumentoSalario;
 
         System.out.println("salario anterior = R$ " + salario + " salario atual = R$ " + novoSalario + " aumento = R$ " + aumentoSalario);
 
