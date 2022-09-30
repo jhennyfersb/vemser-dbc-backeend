@@ -13,12 +13,10 @@ public class Main {
         int quantProduto = sc.nextInt();
 
         System.out.println("Qual o preço do produto?");
-        Double precoProduto = sc.nextDouble();
-
-        Double valorTotal = quantProduto * precoProduto;
+        double precoProduto = sc.nextDouble();
+        double valorTotal = quantProduto * precoProduto;
 
         System.out.println("codigo " + codigoProduto + " preco unitario = R$ " + precoProduto + " valor total = R$  " + valorTotal);
-
 
     }
 }
