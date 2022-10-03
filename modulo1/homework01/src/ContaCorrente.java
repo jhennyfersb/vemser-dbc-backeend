@@ -25,7 +25,7 @@ public class ContaCorrente {
     }
 
     public boolean sacar(double saldoSacar) {
-        if (this.saldo > saldoSacar) {
+        if (this.saldo + chequeEspecial > saldoSacar) {
             this.saldo -= saldoSacar;
             return true;
         }
