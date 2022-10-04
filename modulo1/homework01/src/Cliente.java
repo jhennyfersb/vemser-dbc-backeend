@@ -8,8 +8,8 @@ public class Cliente {
 
     public Cliente(String nome,
                    String cpf,
-                   Contato contato,
-                   Endereco endereco) {
+                   Contato[] contato,
+                   Endereco[] endereco) {
         this.nome = nome;
         this.cpf = cpf;
         this.contatos = contato;
