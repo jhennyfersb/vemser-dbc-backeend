@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class Cliente {
     private String nome;
     private String cpf;
@@ -17,19 +15,15 @@ public class Cliente {
     public String getCpf() {
         return cpf;
     }
-
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-
     public Contato[] getContatos() {
         return contatos;
     }
-
     public void setContatos(Contato[] contatos) {
         this.contatos = contatos;
     }
-
     public Endereco[] getEnderecos() {
         return enderecos;
     }
@@ -37,7 +31,6 @@ public class Cliente {
     public void setEnderecos(Endereco[] enderecos) {
         this.enderecos = enderecos;
     }
-
 
     public Cliente(String nome,
                    String cpf,
@@ -50,31 +43,34 @@ public class Cliente {
     }
 
     public void imprimirContatos() {
-
-        for (int i = 0; i < contatos.length; i++) {
-            if (contatos[i] != null) {
-                System.out.println("Nome do Contato :" + getNome());
-                System.out.println("Tipo de Contato : " + contatos[i].getTipoContato());
-                System.out.println("Descrição : " + contatos[i].getDescricao());
-                System.out.println("Telefone : " + contatos[i].getTelefone());
-                System.out.println("-------------------------------------");
+        if(contatos != null) {
+            for (Contato contato : contatos) {
+                if (contato != null) {
+                    System.out.println("Nome do Contato :" + getNome());
+                    System.out.println("Tipo de Contato : " + contato.getTipoContato());
+                    System.out.println("Descrição : " + contato.getDescricao());
+                    System.out.println("Telefone : " + contato.getTelefone());
+                    System.out.println("-------------------------------------");
+                }
             }
         }
     }
-
     public void imprimirEnderecos() {
-
-        for (int i = 0; i < enderecos.length; i++) {
-            System.out.println("Nome do Cliente : " +
-                    getNome() + "\nTipo de Endereço : " +
-                    enderecos[i].getTipoEndereco() + "\nLogradouro : " +
-                    enderecos[i].getLogradouro() + "\nNumero : " +
-                    enderecos[i].getNumero() + "\nComplemento : " +
-                    enderecos[i].getComplemento() +
-                    "\nCep : " + enderecos[i].getCep() +
-                    "\nEstado : " + enderecos[i].getEstado() +
-                    "\nPais : " + enderecos[i].getPais() +
-                    "\n-------------------------------------");
+        if(contatos != null) {
+            for (int i = 0; i < enderecos.length; i++) {
+                if(contatos[i] != null) {
+                    System.out.println("Nome do Cliente : " +
+                            getNome() + "\nTipo de Endereço : " +
+                            enderecos[i].getTipoEndereco() + "\nLogradouro : " +
+                            enderecos[i].getLogradouro() + "\nNumero : " +
+                            enderecos[i].getNumero() + "\nComplemento : " +
+                            enderecos[i].getComplemento() +
+                            "\nCep : " + enderecos[i].getCep() +
+                            "\nEstado : " + enderecos[i].getEstado() +
+                            "\nPais : " + enderecos[i].getPais() +
+                            "\n-------------------------------------");
+                }
+            }
         }
     }
 
