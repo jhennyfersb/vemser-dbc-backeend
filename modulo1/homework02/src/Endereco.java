@@ -78,7 +78,6 @@ public class Endereco {
         this.estado = estado;
         this.pais = pais;
     }
-
     public void imprimirEndereco() {
         System.out.println("Tipo de Endereço : " + tipoEndereco +
                 "\n Logradouro : " + logradouro +

@@ -34,7 +34,6 @@ public class Main {
         contaCorrenteMaria.imprimir();
         contaCorrenteCassia.imprimir();
 
-
         clienteJhennyfer.imprimirEnderecos();
         clienteJhennyfer.imprimirContatos();
 

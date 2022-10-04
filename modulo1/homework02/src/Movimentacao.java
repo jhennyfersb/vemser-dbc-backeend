@@ -1,5 +1,5 @@
 public interface Movimentacao {
-    boolean sacar(double saldoSacar);
-    boolean depositar(double saldoDepositar);
+    boolean sacar(double valorSacar);
+    boolean depositar(double valorDepositar);
     boolean transferir(Conta conta, double valor);
 }
