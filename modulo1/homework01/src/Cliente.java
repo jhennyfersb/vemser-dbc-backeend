@@ -12,24 +12,17 @@ public class Cliente {
                    Endereco endereco) {
         this.nome = nome;
         this.cpf = cpf;
-        for (int i = 0; i < contatos.length; i++) {
-            if (contatos[i] == null) {
-                this.contatos[i] = contato;
-            }
-        }
-        for (int i = 0; i < enderecos.length; i++) {
-            if (enderecos[i] == null) {
-                this.enderecos[i] = endereco;
-            }
-        }
+        this.contatos = contato;
+        this.enderecos = endereco;
     }
 
     public void imprimirContatos() {
         for (int i = 0; i < contatos.length; i++) {
+            if (contatos[i] != null) {
             System.out.println("Tipo de Contato : " + contatos[i].tipoContato);
             System.out.println("Descrição : " + contatos[i].descricao);
             System.out.println("Telefone : " + contatos[i].telefone);
-
+           }
         }
     }
 
