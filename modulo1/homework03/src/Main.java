@@ -19,12 +19,12 @@ public class Main {
         Contato contatoMaria = new Contato("celular", "95992245107", TipoContato.RESIDENCIAL);
         ArrayList<Contato> contatosMaria = new ArrayList<>();
         contatosMaria.add(contatoMaria);
-        ArrayList<Endereco> enderecosMaria = new ArrayList<>() {
-        };
+        ArrayList<Endereco> enderecosMaria = new ArrayList<>() {};
         enderecosMaria.add(enderecoMaria);
         Cliente clienteMaria = new Cliente("Maria Fernandes de Lima", "85568901833",
                 contatosMaria, enderecosMaria);
         Contapoupanca contapoupancaMaria = new Contapoupanca(clienteMaria, "1235", "9876", 200.00);
+
 
         Endereco enderecoCassia = new Endereco(TipoEndereco.RESIDENCIAL, "Lourival Coimbra",
                 442, "antiga s1", "69314540", "Roraima", "Brasil");
@@ -47,6 +47,7 @@ public class Main {
 
         contaCorrenteJhennyfer.imprimir();
         contaPagamentoJhennyfer.imprimir();
+        contaPagamentoJhennyfer.transferir(contaCorrenteCassia, 60.00);
         contapoupancaMaria.imprimir();
         contaCorrenteCassia.imprimir();
 

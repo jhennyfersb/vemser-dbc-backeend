@@ -61,17 +61,17 @@ public class Cliente {
 
     public void imprimirEnderecos() {
         if (enderecos != null) {
-            for (int i = 0; i < enderecos.size(); i++) {
-                if (enderecos.get(i) != null) {
+            for (Endereco endereco : enderecos) {
+                if (endereco != null) {
                     System.out.println("Nome do Cliente : " +
                             getNome() + "\nTipo de Endereço : " +
-                            enderecos.get(i).getTipoEndereco() + "\nLogradouro : " +
-                            enderecos.get(i).getLogradouro() + "\nNumero : " +
-                            enderecos.get(i).getNumero() + "\nComplemento : " +
-                            enderecos.get(i).getComplemento() +
-                            "\nCep : " + enderecos.get(i).getCep() +
-                            "\nEstado : " + enderecos.get(i).getEstado() +
-                            "\nPais : " + enderecos.get(i).getPais() +
+                            endereco.getTipoEndereco() + "\nLogradouro : " +
+                            endereco.getLogradouro() + "\nNumero : " +
+                            endereco.getNumero() + "\nComplemento : " +
+                            endereco.getComplemento() +
+                            "\nCep : " + endereco.getCep() +
+                            "\nEstado : " + endereco.getEstado() +
+                            "\nPais : " + endereco.getPais() +
                             "\n-------------------------------------");
                 }
             }
