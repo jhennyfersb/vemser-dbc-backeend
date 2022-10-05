@@ -58,7 +58,7 @@ public class Cliente {
     public void imprimirEnderecos() {
         if(contatos != null) {
             for (int i = 0; i < enderecos.length; i++) {
-                if(contatos[i] != null) {
+                if(enderecos[i] != null) {
                     System.out.println("Nome do Cliente : " +
                             getNome() + "\nTipo de Endereço : " +
                             enderecos[i].getTipoEndereco() + "\nLogradouro : " +
