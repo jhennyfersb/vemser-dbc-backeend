@@ -16,8 +16,11 @@ public class Stream {
         lista.add(new Pessoa(++i, "Gustavo", 18000, "Diretor"));
 
         //1- listar todas as pessoas
-        lista.stream().map(Pessoa::getNome).forEach(System.out::println);
+        lista.stream().
+                map(Pessoa::getNome)
+                .forEach(System.out::println);
         System.out.println();
+
         //2- filtrar todas as pessoas com salario maior do que 5 mil (filter)
         List<Pessoa> listaFiltrada = lista.stream()
                 .filter(pessoa -> pessoa.getSalario() > 5000)
@@ -34,30 +37,30 @@ public class Stream {
         System.out.println();
 
         //4- fazer a média salarial de todos
-        OptionalDouble average = lista.stream().
-                mapToDouble(Pessoa::getSalario).
-                average();
+        OptionalDouble average = lista.stream()
+                .mapToDouble(Pessoa::getSalario)
+                .average();
         System.out.println(average);
         System.out.println();
 
 
         //5- verificar na lista (utilizando o método anyMatch) se tem alguém que ganha mais do que 20 mil
-        boolean b = lista.stream().
-                anyMatch(pessoa -> pessoa.getSalario() > 20000);
+        boolean b = lista.stream()
+                .anyMatch(pessoa -> pessoa.getSalario() > 20000);
         System.out.println(b);
+        System.out.println();
 
         //6- retornar uma lista de todos os ids das pessoas
         lista.stream().
-                map(pessoa -> pessoa.id).
-                forEach(System.out::println);
+                map(pessoa -> pessoa.id)
+                .forEach(System.out::println);
         System.out.println();
 
         //7- criar uma nova classe Salario com ID e Salário, utilizando a função "map" do stream, retornar uma lista desse novo objeto
-        lista.stream().map(pessoa -> new Salario(pessoa.id, pessoa.salario)).
-                collect(Collectors.toList()).
-                forEach(System.out::println);
+        lista.stream().map(pessoa -> new Salario(pessoa.id, pessoa.salario))
+                .toList()
+                .forEach(System.out::println);
         System.out.println();
-
 
         //8- retornar um HashMap (estrutura de dados, e não uma função map) contendo os ids e os nomes dos colaboradores
         Map<Integer, String> hashMap = lista.stream().
@@ -66,17 +69,17 @@ public class Stream {
         System.out.println();
 
         //9- com o mapa da 8, retornar o nome com o id=2
-        lista.stream().
-                filter(pessoa -> hashMap.containsKey(2)).map(Pessoa::getNome).forEach(System.out::println);
+        System.out.println(hashMap.get(2));
         System.out.println();
 
-
-        System.out.println();
         //10- verificar se tem alguém que contenha o nome "Paulo" (containsignorecase) na lista e retornar o primeiro elemento que encontrar (findFirst).
         //    Imprimir o nome e salário dessa pessoa
-        Pessoa paulo = lista.stream().
-                filter(pessoa -> pessoa.getNome().contains("Paulo")).findFirst().get();
-        System.out.println("Nome : " + paulo.getNome() + "\nSalario : " + paulo.getSalario());
+        Optional<Pessoa> paulo = lista.stream()
+                .filter(pessoa -> pessoa.getNome().toLowerCase()
+                        .contains("paulo"))
+                        .findFirst();
+        paulo.ifPresent(pessoa -> System.out.println("Nome : " + pessoa.getNome() +
+                "\nSalario : " + pessoa.getSalario()));
     }
 
     static class Pessoa {
