@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/vemser-dbc-backend.iml" filepath="$PROJECT_DIR$/vemser-dbc-backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modulo1/exercicio-exceptions/exercicio-exceptions.iml" filepath="$PROJECT_DIR$/modulo1/exercicio-exceptions/exercicio-exceptions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modulo1/exercicio-stream/exercicio-stream.iml" filepath="$PROJECT_DIR$/modulo1/exercicio-stream/exercicio-stream.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modulo1/homework01/homework01.iml" filepath="$PROJECT_DIR$/modulo1/homework01/homework01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modulo1/homework02/homework02.iml" filepath="$PROJECT_DIR$/modulo1/homework02/homework02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modulo1/homework03/homework03.iml" filepath="$PROJECT_DIR$/modulo1/homework03/homework03.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modulo1/lista1/lista1.iml" filepath="$PROJECT_DIR$/modulo1/lista1/lista1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modulo1/lista2/lista2.iml" filepath="$PROJECT_DIR$/modulo1/lista2/lista2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/vemser-dbc-backend.iml" filepath="$PROJECT_DIR$/.idea/vemser-dbc-backend.iml" />
     </modules>
   </component>
 </project>
