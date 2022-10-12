@@ -4,6 +4,10 @@ abstract public class Conta implements Movimentacao {
     private String agencia;
     private double saldo;
 
+    public Conta() {
+
+    }
+
     public Cliente getCliente() {
         return cliente;
     }

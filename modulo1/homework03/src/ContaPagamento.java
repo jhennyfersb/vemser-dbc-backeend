@@ -7,6 +7,14 @@ public class ContaPagamento extends Conta implements Impressao {
     public ContaPagamento(Cliente cliente, String numeroConta, String agencia, double saldo) {
         super(cliente, numeroConta, agencia, saldo);
     }
+
+    public ContaPagamento() {
+    }
+
+    public ContaPagamento(double saldoAntesDeSacar) {
+        this.saldoAntesDeSacar = saldoAntesDeSacar;
+    }
+
     @Override
     public boolean sacar(double valorSacar) {
         if (getSaldo() >= valorSacar + TAXA_SAQUE) {

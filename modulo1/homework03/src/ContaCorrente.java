@@ -16,6 +16,9 @@ public class ContaCorrente extends Conta implements Impressao {
         setChequeEspecial(chequeEspecial);
     }
 
+    public ContaCorrente() {
+    }
+
     public double retornarSaldoComChequeEspecial() {
         return this.getSaldo() + getChequeEspecial();
     }

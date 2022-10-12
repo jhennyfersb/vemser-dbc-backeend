@@ -1,10 +1,10 @@
 
-public class Pessoa {
+public class Pessoa1 {
     private int id;
     private String nome;
     private double salario;
 
-    public Pessoa(int id, String nome, double salario) {
+    public Pessoa1(int id, String nome, double salario) {
         this.id = id;
         this.nome = nome;
         this.salario = salario;

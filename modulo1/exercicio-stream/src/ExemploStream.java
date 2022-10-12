@@ -2,7 +2,6 @@
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class ExemploStream {
 
@@ -10,10 +9,10 @@ public class ExemploStream {
 //        Pessoa maicon = new Pessoa(1, "Maicon", 20000);
 //        System.out.println(maicon);
 
-            List<Pessoa> lista = new ArrayList<>();
-            lista.add(new Pessoa(1, "Maicon", 50000));
-            lista.add(new Pessoa(2, "Pedro", 53000));
-            lista.add(new Pessoa(3, "Joel", 60000));
+            List<Pessoa1> lista = new ArrayList<>();
+            lista.add(new Pessoa1(1, "Maicon", 50000));
+            lista.add(new Pessoa1(2, "Pedro", 53000));
+            lista.add(new Pessoa1(3, "Joel", 60000));
 //        System.out.println(lista);
 
 //        for(Pessoa p : lista){
@@ -29,7 +28,7 @@ public class ExemploStream {
 //        lista.stream()
 //                .forEach(pessoa -> System.out.println(pessoa));
 
-            List<Pessoa> listaFiltrada = lista.stream()
+            List<Pessoa1> listaFiltrada = lista.stream()
                     .filter(pessoa -> pessoa.getId() >= 2)
                     .toList();
             System.out.println(lista);
@@ -84,7 +83,7 @@ public class ExemploStream {
 //            System.out.println(possivelPessoa.get());
 //        }
 
-            List<Pessoa> minhaLista = lista.stream()
+            List<Pessoa1> minhaLista = lista.stream()
                     .peek(System.out::println)
                     .toList();
         }

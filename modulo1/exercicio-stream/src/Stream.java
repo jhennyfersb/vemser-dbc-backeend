@@ -56,13 +56,15 @@ public class Stream {
                 .forEach(System.out::println);
         System.out.println();
 
-        //7- criar uma nova classe Salario com ID e Salário, utilizando a função "map" do stream, retornar uma lista desse novo objeto
+        //7- criar uma nova classe Salario com ID e Salário, utilizando a
+        // função "map" do stream, retornar uma lista desse novo objeto
         lista.stream().map(pessoa -> new Salario(pessoa.id, pessoa.salario))
                 .toList()
                 .forEach(System.out::println);
         System.out.println();
 
-        //8- retornar um HashMap (estrutura de dados, e não uma função map) contendo os ids e os nomes dos colaboradores
+        //8- retornar um HashMap (estrutura de dados, e não uma função map)
+        // contendo os ids e os nomes dos colaboradores
         Map<Integer, String> hashMap = lista.stream().
                 collect(Collectors.toMap(Pessoa::getId, Pessoa::getNome));
         System.out.println(hashMap);
