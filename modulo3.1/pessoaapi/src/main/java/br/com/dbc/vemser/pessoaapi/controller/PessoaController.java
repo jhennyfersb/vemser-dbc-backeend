@@ -8,10 +8,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/pessoa")
 public class PessoaController {
-    private PessoaService pessoaService;
+    private  PessoaService pessoaService;
 
-    public PessoaController() {
-        pessoaService = new PessoaService();
+    public PessoaController(PessoaService pessoaService) {
+        this.pessoaService = pessoaService;
     }
 
     @GetMapping("/hello") // localhost:8080/pessoa/hello
@@ -20,7 +20,7 @@ public class PessoaController {
     }
 
     @PostMapping // localhost:8080/pessoa
-    public Pessoa create(@RequestBody Pessoa pessoa) {
+    public Pessoa create(@RequestBody Pessoa pessoa) throws Exception {
         return pessoaService.create(pessoa);
     }
 

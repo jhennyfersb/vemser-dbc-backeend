@@ -2,13 +2,14 @@ package br.com.dbc.vemser.pessoaapi.repository;
 
 import br.com.dbc.vemser.pessoaapi.entity.Contato;
 import br.com.dbc.vemser.pessoaapi.entity.TipoContato;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
-
+@Repository
 public class ContatoRepository {
     private static List<Contato> listaContatos = new ArrayList<>();
     private AtomicInteger COUNTER = new AtomicInteger();
@@ -42,12 +43,8 @@ public class ContatoRepository {
         return contatoRecuperado;
     }
 
-    public void delete(Integer id) throws Exception {
-        Contato contatoRecuperado = listaContatos.stream()
-                .filter(contato -> contato.getIdContato().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new Exception("Contato não encontrado"));
-        listaContatos.remove(contatoRecuperado);
+    public void delete(Contato contato) {
+        listaContatos.remove(contato);
     }
 
     public List<Contato> listByNumber(String numero) {
@@ -55,8 +52,9 @@ public class ContatoRepository {
                 .filter(contato -> contato.getNumero().toUpperCase().contains(numero.toUpperCase()))
                 .collect(Collectors.toList());
     }
-    public Contato buscarPorId(Integer idPessoa){
-       return listaContatos.stream().filter(contato -> Objects.equals(contato.getIdPessoa(), idPessoa)).findFirst().get();
+
+    public List<Contato> buscarPorId(Integer idPessoa) {
+        return listaContatos.stream().filter(contato -> Objects.equals(contato.getIdPessoa(), idPessoa)).collect(Collectors.toList());
 
     }
 }
