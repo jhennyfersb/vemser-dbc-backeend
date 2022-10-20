@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "ca30d5d1-c851-4d18-a549-1f5e04b8e32f",
+		"name": "homework-3-endereco",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23399275"
+	},
+	"item": [
+		{
+			"name": "recupera todos enderecos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/endereco",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"endereco"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "recupera endereco especifico",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/endereco/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"endereco",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "recupera os endereco por pessoa",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/endereco/pessoa/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"endereco",
+						"pessoa",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "recebe a pessoa, o endereco e cria o endereco com id da pessoa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"LouriVal\",\r\n        \"numero\": 62,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"65314545\",\r\n        \"cidade\": \"Pato Branco\",\r\n        \"estado\": \"Parana\",\r\n        \"pais\": \"Brasil\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/endereco/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"endereco",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "altera os dados do endereco",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"LouriVal\",\r\n        \"numero\": 62,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"65314545\",\r\n        \"cidade\": \"Pato Branco\",\r\n        \"estado\": \"Parana\",\r\n        \"pais\": \"Brasil\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/endereco/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"endereco",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove endereco pelo id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/endereco/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"endereco",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

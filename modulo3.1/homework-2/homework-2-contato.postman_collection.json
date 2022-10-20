@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "d6b7086b-9497-44d8-88bd-be2f9058e124",
-		"name": "contato-api-aula-2",
+		"name": "homework-2-contato",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23399275"
 	},
@@ -12,20 +12,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/contato/pessoa?idPessoa=1",
+					"raw": "localhost:8080/contato/pessoa/2",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"contato",
-						"pessoa"
-					],
-					"query": [
-						{
-							"key": "idPessoa",
-							"value": "1"
-						}
+						"pessoa",
+						"2"
 					]
 				}
 			},
@@ -56,7 +51,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n     \"idPessoa\": 2,\r\n    \"tipoContato\": \"RESIDENCIAL\",\r\n    \"numero\": \"48987364566\",\r\n    \"descricao\": \"telefone\"\r\n}",
+					"raw": "{\r\n    \"tipoContato\": \"RESIDENCIAL\",\r\n    \"numero\": \"48987364566\",\r\n    \"descricao\": \"telefone\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -64,13 +59,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/contato",
+					"raw": "localhost:8080/contato/2",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"contato"
+						"contato",
+						"2"
 					]
 				}
 			},
@@ -83,7 +79,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n        \"idPessoa\": 4,\r\n        \"tipoContato\": \"RESIDENCIAL\",\r\n        \"numero\": \"046991180197\",\r\n        \"descricao\": \"whatsapp\"\r\n    }",
+					"raw": "{\r\n        \"tipoContato\": \"RESIDENCIAL\",\r\n        \"numero\": \"046991180197\",\r\n        \"descricao\": \"whatsapp\"\r\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
