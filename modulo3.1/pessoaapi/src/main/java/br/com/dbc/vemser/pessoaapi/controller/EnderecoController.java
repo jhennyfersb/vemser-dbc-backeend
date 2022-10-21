@@ -1,9 +1,14 @@
 package br.com.dbc.vemser.pessoaapi.controller;
 import br.com.dbc.vemser.pessoaapi.entity.Endereco;
+import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.service.EnderecoService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 import java.util.List;
-
+@Validated
 @RestController
 @RequestMapping("/endereco")
 public class EnderecoController {
@@ -25,19 +30,17 @@ public class EnderecoController {
     public List<Endereco> listPessoaId(@PathVariable("idPessoa")String id){
         return enderecoService.buscarPorId(id);
     }
-    @PostMapping("/{idEndereco}")
-    public Endereco create(@PathVariable("idEndereco")Integer id,
-                           @RequestBody Endereco endereco){
-        endereco.setIdPessoa(id);
+    @PostMapping
+    public Endereco create(@Valid @RequestBody Endereco endereco)throws RegraDeNegocioException{
         return enderecoService.create(endereco);
     }
     @PutMapping("/{idEndereco}")
-    public Endereco update(@PathVariable("idEndereco")Integer id,
-                           @RequestBody Endereco enderecoAtualizar) throws Exception {
-        return enderecoService.update(id,enderecoAtualizar);
+    public ResponseEntity<Endereco> update(@PathVariable("idEndereco")Integer id,
+                                          @Valid @RequestBody Endereco enderecoAtualizar) throws RegraDeNegocioException {
+        return new ResponseEntity<>(enderecoService.update(id,enderecoAtualizar), HttpStatus.OK);
     }
     @DeleteMapping("/{idEndereco}")
-    public void delete(@PathVariable("idEndereco")Integer id) throws Exception {
+    public void delete(@PathVariable("idEndereco")Integer id) throws RegraDeNegocioException{
         enderecoService.delete(id);
     }
 }

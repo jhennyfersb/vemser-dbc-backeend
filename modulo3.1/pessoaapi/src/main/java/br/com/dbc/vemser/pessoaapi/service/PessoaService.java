@@ -1,6 +1,7 @@
 package br.com.dbc.vemser.pessoaapi.service;
 
 import br.com.dbc.vemser.pessoaapi.entity.Pessoa;
+import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.PessoaRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +22,11 @@ public class PessoaService {
     public List<Pessoa> list() {
         return pessoaRepository.list();
     }
-    private Pessoa findById(Integer id) throws Exception{
+    Pessoa findById(Integer id) throws RegraDeNegocioException {
         Pessoa pessoaRecuperada = pessoaRepository.list().stream()
                 .filter(pessoa -> pessoa.getIdPessoa().equals(id))
                 .findFirst()
-                .orElseThrow(()-> new Exception("Pessoa não encontrada"));
+                .orElseThrow(()-> new RegraDeNegocioException("Pessoa não encontrada"));
 
         return pessoaRecuperada;
     }
