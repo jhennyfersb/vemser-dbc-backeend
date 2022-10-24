@@ -1,54 +1,64 @@
 package br.com.dbc.vemser.pessoaapi.service;
 
+import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
+import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
 import br.com.dbc.vemser.pessoaapi.entity.Pessoa;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.PessoaRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class PessoaService {
-    private PessoaRepository pessoaRepository;
+    private final PessoaRepository pessoaRepository;
+    private final ObjectMapper objectMapper;
 
-    public PessoaService(PessoaRepository pessoaRepository) {
-        this.pessoaRepository = pessoaRepository;
+    public PessoaDTO create(PessoaCreateDTO pessoa) throws RegraDeNegocioException {
+        Pessoa pessoaEntity = objectMapper.convertValue(pessoa, Pessoa.class);
+        Pessoa pessoa1 = pessoaRepository.create(pessoaEntity);
+        return objectMapper.convertValue(pessoa1, PessoaDTO.class);
     }
 
-    public Pessoa create(Pessoa pessoa)  {
-        return pessoaRepository.create(pessoa);
+    public List<PessoaDTO> list() {
+        return pessoaRepository.list()
+                .stream()
+                .map(pessoa -> objectMapper.convertValue(pessoa, PessoaDTO.class))
+                .collect(Collectors.toList());
     }
 
-    public List<Pessoa> list() {
-        return pessoaRepository.list();
-    }
     Pessoa findById(Integer id) throws RegraDeNegocioException {
+        return pessoaRepository.list().stream()
+                .filter(pessoa -> pessoa.getIdPessoa().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new RegraDeNegocioException("Pessoa não encontrada"));
+    }
+
+    public PessoaDTO update(Integer id,
+                            PessoaCreateDTO pessoaAtualizarDTO) throws RegraDeNegocioException {
         Pessoa pessoaRecuperada = pessoaRepository.list().stream()
                 .filter(pessoa -> pessoa.getIdPessoa().equals(id))
                 .findFirst()
-                .orElseThrow(()-> new RegraDeNegocioException("Pessoa não encontrada"));
-
-        return pessoaRecuperada;
+                .orElseThrow(() -> new RegraDeNegocioException("Pessoa não econtrada"));
+        pessoaRecuperada.setCpf(pessoaAtualizarDTO.getCpf());
+        pessoaRecuperada.setNome(pessoaAtualizarDTO.getNome());
+        pessoaRecuperada.setDataNascimento(pessoaAtualizarDTO.getDataNascimento());
+        return objectMapper.convertValue(pessoaRecuperada, PessoaDTO.class);
     }
 
-    public Pessoa update(Integer id,
-                         Pessoa pessoaAtualizar) throws Exception {
-        Pessoa pessoaRecuperada = pessoaRepository.list().stream()
-                .filter(pessoa -> pessoa.getIdPessoa().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new Exception("Pessoa não econtrada"));
-        pessoaRecuperada.setCpf(pessoaAtualizar.getCpf());
-        pessoaRecuperada.setNome(pessoaAtualizar.getNome());
-        pessoaRecuperada.setDataNascimento(pessoaAtualizar.getDataNascimento());
-        return pessoaRecuperada;
-    }
-
-    public void delete(Integer id) throws Exception {
+    public void delete(Integer id) throws RegraDeNegocioException {
         Pessoa pessoaRecuperada = findById(id);
         pessoaRepository.delete(pessoaRecuperada);
     }
 
-    public List<Pessoa> listByName(String nome) {
-        return pessoaRepository.listByName(nome);
+    public List<PessoaDTO> listByName(String nome) {
+        return pessoaRepository.listByName(nome)
+                .stream()
+                .map(pessoa -> objectMapper.convertValue(pessoa, PessoaDTO.class))
+                .collect(Collectors.toList());
     }
 }
