@@ -5,6 +5,7 @@ import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
 import br.com.dbc.vemser.pessoaapi.entity.Pessoa;
 import br.com.dbc.vemser.pessoaapi.exception.BancoDeDadosException;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
+import br.com.dbc.vemser.pessoaapi.service.EmailService;
 import br.com.dbc.vemser.pessoaapi.service.PessoaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +25,7 @@ public class PessoaController {
 
     private final PessoaService pessoaService;
 
-
+    private final EmailService emailService;
 
     @Value("${user}")
     private String usuario;
@@ -32,9 +33,18 @@ public class PessoaController {
     @Value("${spring.aplication.name}")
     private String app;
 
-
     @GetMapping("/hello") // localhost:8080/pessoa/hello
     public String hello() {
+        log.trace("A Trace Message");
+        log.debug("A DEBUG Message");
+        log.info("An INFO Message");
+        log.warn("A WARN Message");
+        log.error("An ERROR Message");
+        try {
+            emailService.sendSimpleMessage();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return "Hello world!";
     }
 
@@ -74,5 +84,6 @@ public class PessoaController {
         log.info("deletando pessoa");
         pessoaService.delete(id);
         log.info("pessoa deletada");
+
     }
 }

@@ -52,7 +52,6 @@ public class ContatoService {
         contatoRecuperado.setDescricao(contatoAtualizarDTO.getDescricao());
         return objectMapper.convertValue(contatoRecuperado, ContatoDTO.class);
     }
-
     public void delete(Integer id) throws RegraDeNegocioException {
         Contato contatoDeletado = findByID(id);
         contatoRepository.delete(contatoDeletado);

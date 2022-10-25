@@ -3,13 +3,16 @@ package br.com.dbc.vemser.pessoaapi.service;
 import br.com.dbc.vemser.pessoaapi.dto.EnderecoCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.EnderecoDTO;
 import br.com.dbc.vemser.pessoaapi.entity.Endereco;
+import br.com.dbc.vemser.pessoaapi.entity.Pessoa;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.EnderecoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -19,6 +22,8 @@ public class EnderecoService {
     private final EnderecoRepository enderecoRepository;
     private final PessoaService pessoaService;
     private final ObjectMapper objectMapper;
+
+    private final EmailService emailService;
 
 
     public List<EnderecoDTO> list() {
@@ -31,7 +36,12 @@ public class EnderecoService {
     public EnderecoDTO create(EnderecoCreateDTO enderecoCreateDTO) throws RegraDeNegocioException {
         Endereco enderecoEntity = objectMapper.convertValue(enderecoCreateDTO, Endereco.class);
         Endereco endereco = enderecoRepository.create(enderecoEntity);
-        pessoaService.findById(enderecoEntity.getIdPessoa());
+        Pessoa pessoaEndereco = pessoaService.findById(enderecoEntity.getIdPessoa());
+        Map<String,Object> dados = new HashMap<>();
+        dados.put("nome",pessoaEndereco.getNome());
+        dados.put("id",pessoaEndereco.getIdPessoa());
+        dados.put("email",pessoaEndereco.getEmail());
+        emailService.sendEmail(dados,"endereco-template.ftl");
         return objectMapper.convertValue(endereco, EnderecoDTO.class);
     }
 
@@ -44,17 +54,23 @@ public class EnderecoService {
         return enderecoRecuperado;
     }
 
-    public EnderecoDTO update(Integer id, EnderecoCreateDTO enderecoAtualizar) throws RegraDeNegocioException {
+    public EnderecoDTO update(Integer id,
+                              EnderecoCreateDTO enderecoAtualizarDTO) throws RegraDeNegocioException {
         Endereco enderecoRecuperado = findById(id);
-        enderecoRecuperado.setIdPessoa(enderecoAtualizar.getIdPessoa());
-        enderecoRecuperado.setTipo(enderecoAtualizar.getTipo());
-        enderecoRecuperado.setLogradouro(enderecoAtualizar.getLogradouro());
-        enderecoRecuperado.setComplemento(enderecoAtualizar.getComplemento());
-        enderecoRecuperado.setNumero(enderecoAtualizar.getNumero());
-        enderecoRecuperado.setCep(enderecoAtualizar.getCep());
-        enderecoRecuperado.setCidade(enderecoAtualizar.getCidade());
-        enderecoRecuperado.setPais(enderecoAtualizar.getPais());
-        return objectMapper.convertValue(enderecoAtualizar, EnderecoDTO.class);
+        enderecoRecuperado.setIdPessoa(enderecoAtualizarDTO.getIdPessoa());
+        enderecoRecuperado.setTipo(enderecoAtualizarDTO.getTipo());
+        enderecoRecuperado.setLogradouro(enderecoAtualizarDTO.getLogradouro());
+        enderecoRecuperado.setComplemento(enderecoAtualizarDTO.getComplemento());
+        enderecoRecuperado.setNumero(enderecoAtualizarDTO.getNumero());
+        enderecoRecuperado.setCep(enderecoAtualizarDTO.getCep());
+        enderecoRecuperado.setCidade(enderecoAtualizarDTO.getCidade());
+        enderecoRecuperado.setPais(enderecoAtualizarDTO.getPais());
+        Map<String,Object> dados = new HashMap<>();
+        Pessoa pessoaEndereco = pessoaService.findById(id);
+        dados.put("nome",pessoaEndereco.getNome());
+        dados.put("email",pessoaEndereco.getEmail());
+        emailService.sendEmail(dados,"endereco-template-update.ftl");
+        return objectMapper.convertValue(enderecoRecuperado, EnderecoDTO.class);
     }
 
     public List<EnderecoDTO> listByEndereco(Integer id) {
@@ -66,6 +82,11 @@ public class EnderecoService {
 
     public void delete(Integer id) throws RegraDeNegocioException {
         Endereco enderecoDeletado = findById(id);
+        Pessoa pessoaEndereco = pessoaService.findById(enderecoDeletado.getIdPessoa());
+        Map<String,Object> dados = new HashMap<>();
+        dados.put("nome",pessoaEndereco.getNome());
+        dados.put("email",pessoaEndereco.getEmail());
+        emailService.sendEmail(dados,"endereco-template-delete.ftl");
         enderecoRepository.delete(enderecoDeletado);
     }
 

@@ -18,6 +18,7 @@ public class PessoaCreateDTO {
     private String nome;
     @NotNull
     private LocalDate dataNascimento;
+    private String email;
     @NotNull(message = "cpf invalido")
     @Size(min = 11, max = 11)
     private String cpf;

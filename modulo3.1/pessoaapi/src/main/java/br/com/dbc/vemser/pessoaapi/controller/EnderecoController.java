@@ -59,6 +59,8 @@ public class EnderecoController {
 
     @DeleteMapping("/{idEndereco}")
     public void delete(@PathVariable("idEndereco") Integer id) throws RegraDeNegocioException {
+        log.info("deletando endereço..");
         enderecoService.delete(id);
+        log.info("Endereço deletado");
     }
 }
