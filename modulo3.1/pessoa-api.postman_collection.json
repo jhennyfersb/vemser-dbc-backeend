@@ -10,311 +10,301 @@
 			"name": "contato",
 			"item": [
 				{
-					"name": "contato-exception",
-					"item": [
-						{
-							"name": "pessoa nao encontrada",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"idPessoa\": 67,\r\n    \"tipoContato\": \"RESIDENCIAL\",\r\n    \"numero\": \"48987364566\",\r\n    \"descricao\": \"telefone\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/contato",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"contato"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "erros nulo",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"idPessoa\": 1,\r\n    \"tipoContato\": null,\r\n    \"numero\": null,\r\n    \"descricao\": null\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/contato",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"contato"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "contato  nao existe",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "localhost:8080/contato/12",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"contato",
-										"12"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "contato nao existe",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n        \"tipoContato\": \"RESIDENCIAL\",\r\n        \"numero\": \"046991180197\",\r\n        \"descricao\": \"whatsapp\"\r\n    }",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/contato/25",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"contato",
-										"25"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "erros nulos",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n        \"tipoContato\": null,\r\n        \"numero\": null,\r\n        \"descricao\": \"\"\r\n    }",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/contato/5",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"contato",
-										"5"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "erros vazio e caracteres",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"idPessoa\": 1,\r\n    \"tipoContato\": null,\r\n    \"numero\": \"12345678901234\",\r\n    \"descricao\": \"\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/contato",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"contato"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "erros vazio e caractere",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"tipoContato\": null,\r\n    \"numero\": \"12345678901234\",\r\n    \"descricao\": \"\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/contato/5",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"contato",
-										"5"
-									]
-								}
-							},
-							"response": []
+					"name": "contato",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/contato/2/pessoa",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contato",
+								"2",
+								"pessoa"
+							]
 						}
-					]
+					},
+					"response": []
 				},
 				{
-					"name": "contato-id",
-					"item": [
-						{
-							"name": "contato",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:8080/contato/2/pessoa",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"contato",
-										"2",
-										"pessoa"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Todoscontatos",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:8080/contato",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"contato"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "contato",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"tipoContato\": \"RESIDENCIAL\",\r\n    \"numero\": \"48987364566\",\r\n    \"descricao\": \"telefone\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/contato/2",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"contato",
-										"2"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "contatoDelete",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "localhost:8080/contato/6",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"contato",
-										"6"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "contato",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n        \"tipoContato\": \"RESIDENCIAL\",\r\n        \"numero\": \"046991180197\",\r\n        \"descricao\": \"whatsapp\"\r\n    }",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/contato/4",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"contato",
-										"4"
-									]
-								}
-							},
-							"response": []
+					"name": "Todoscontatos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/contato",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contato"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "contato",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipoContato\": \"RESIDENCIAL\",\r\n    \"numero\": \"48987364566\",\r\n    \"descricao\": \"telefone\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/contato/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contato",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "contatoDelete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/contato/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contato",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "contato",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"tipoContato\": \"RESIDENCIAL\",\r\n        \"numero\": \"046991180197\",\r\n        \"descricao\": \"whatsapp\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/contato/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contato",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pessoa nao encontrada",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idPessoa\": 67,\r\n    \"tipoContato\": \"RESIDENCIAL\",\r\n    \"numero\": \"48987364566\",\r\n    \"descricao\": \"telefone\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/contato",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contato"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "erros nulo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idPessoa\": 1,\r\n    \"tipoContato\": null,\r\n    \"numero\": null,\r\n    \"descricao\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/contato",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contato"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "contato  nao existe",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/contato/12",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contato",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "contato nao existe",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"tipoContato\": \"RESIDENCIAL\",\r\n        \"numero\": \"046991180197\",\r\n        \"descricao\": \"whatsapp\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/contato/25",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contato",
+								"25"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "erros nulos",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"tipoContato\": null,\r\n        \"numero\": null,\r\n        \"descricao\": \"\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/contato/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contato",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "erros vazio e caracteres",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idPessoa\": 1,\r\n    \"tipoContato\": null,\r\n    \"numero\": \"12345678901234\",\r\n    \"descricao\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/contato",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contato"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "erros vazio e caractere",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipoContato\": null,\r\n    \"numero\": \"12345678901234\",\r\n    \"descricao\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/contato/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contato",
+								"5"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -322,342 +312,331 @@
 			"name": "endereco",
 			"item": [
 				{
-					"name": "endereco-exception",
-					"item": [
-						{
-							"name": "pessoa nao encontrada",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n        \"idPessoa\": 99,\r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"Av.Brasil\",\r\n        \"numero\": 456,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"69314540\",\r\n        \"cidade\": \"Itaituba\",\r\n        \"estado\": \"Para\",\r\n        \"pais\": \"Brasil\"\r\n    }",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/endereco",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"endereco"
-									]
+					"name": "pessoa nao encontrada",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"idPessoa\": 99,\r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"Av.Brasil\",\r\n        \"numero\": 456,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"69314540\",\r\n        \"cidade\": \"Itaituba\",\r\n        \"estado\": \"Para\",\r\n        \"pais\": \"Brasil\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							},
-							"response": []
+							}
 						},
-						{
-							"name": "nao pode ser vazio",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n        \"idPessoa\": 12,\r\n        \"tipo\": null,\r\n        \"logradouro\": \"\",\r\n        \"numero\": null,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"123456789\",\r\n        \"cidade\": \"\",\r\n        \"estado\": \"\",\r\n        \"pais\": \"\"\r\n    }",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/endereco",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"endereco"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "nao pode ser nulos",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n        \"idPessoa\": 12,\r\n        \"tipo\": null,\r\n        \"logradouro\": \"\",\r\n        \"numero\": null,\r\n        \"complemento\": null,\r\n        \"cep\": null,\r\n        \"cidade\": null,\r\n        \"estado\": null,\r\n        \"pais\": null\r\n    }",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/endereco",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"endereco"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "endereco nao encontrado",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"Av.Brasil\",\r\n        \"numero\": 456,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"69314540\",\r\n        \"cidade\": \"Itaituba\",\r\n        \"estado\": \"Para\",\r\n        \"pais\": \"Brasil\"\r\n    }",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/endereco/22",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"endereco",
-										"22"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "erros nulos",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n        \"tipo\": null,\r\n        \"logradouro\": null,\r\n        \"numero\": null,\r\n        \"complemento\": null,\r\n        \"cep\": null,\r\n        \"cidade\": null,\r\n        \"estado\": null,\r\n        \"pais\": null\r\n    }",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/endereco/2",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"endereco",
-										"2"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "endereco nao encontrado",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "localhost:8080/endereco/22",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"endereco",
-										"22"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "erros em branco",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n        \"tipo\": null,\r\n        \"logradouro\": \"\",\r\n        \"numero\": null,\r\n        \"complemento\": \"123456789\",\r\n        \"cep\": \"\",\r\n        \"cidade\": \"\",\r\n        \"estado\": null,\r\n        \"pais\": null\r\n    }",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/endereco/2",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"endereco",
-										"2"
-									]
-								}
-							},
-							"response": []
+						"url": {
+							"raw": "localhost:8080/endereco",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"endereco"
+							]
 						}
-					]
+					},
+					"response": []
 				},
 				{
-					"name": "endereco-id",
-					"item": [
-						{
-							"name": "recupera todos enderecos",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:8080/endereco",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"endereco"
-									]
+					"name": "nao pode ser vazio",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"idPessoa\": 1,\r\n        \"tipo\": \"\",\r\n        \"logradouro\": \"\",\r\n        \"numero\": 456,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"\",\r\n        \"cidade\": \"\",\r\n        \"estado\": \"\",\r\n        \"pais\": \"\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							},
-							"response": []
+							}
 						},
-						{
-							"name": "recupera endereco especifico",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:8080/endereco/1",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"endereco",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "recupera os endereco por pessoa",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/endereco/2/pessoa",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"endereco",
-										"2",
-										"pessoa"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "recebe a pessoa, o endereco e cria o endereco com id da pessoa",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": " {\r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"LouriVal\",\r\n        \"numero\": 62,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"65314545\",\r\n        \"cidade\": \"Pato Branco\",\r\n        \"estado\": \"Parana\",\r\n        \"pais\": \"Brasil\"\r\n    }",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/endereco/2",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"endereco",
-										"2"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "altera os dados do endereco",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"LouriVal\",\r\n        \"numero\": 62,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"65314545\",\r\n        \"cidade\": \"Pato Branco\",\r\n        \"estado\": \"Parana\",\r\n        \"pais\": \"Brasil\"\r\n    }",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:8080/endereco/4",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"endereco",
-										"4"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "remove endereco pelo id",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "localhost:8080/endereco/5",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"endereco",
-										"5"
-									]
-								}
-							},
-							"response": []
+						"url": {
+							"raw": "localhost:8080/endereco",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"endereco"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "nao pode ser nulos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"idPessoa\": 12,\r\n        \"tipo\": null,\r\n        \"logradouro\": \"\",\r\n        \"numero\": null,\r\n        \"complemento\": null,\r\n        \"cep\": null,\r\n        \"cidade\": null,\r\n        \"estado\": null,\r\n        \"pais\": null\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/endereco",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"endereco"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "endereco nao encontrado",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"Av.Brasil\",\r\n        \"numero\": 456,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"69314540\",\r\n        \"cidade\": \"Itaituba\",\r\n        \"estado\": \"Para\",\r\n        \"pais\": \"Brasil\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/endereco/22",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"endereco",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "erros nulos",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"tipo\": null,\r\n        \"logradouro\": null,\r\n        \"numero\": null,\r\n        \"complemento\": null,\r\n        \"cep\": null,\r\n        \"cidade\": null,\r\n        \"estado\": null,\r\n        \"pais\": null\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/endereco/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"endereco",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "endereco nao encontrado",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/endereco/22",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"endereco",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "erros em branco",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"tipo\": null,\r\n        \"logradouro\": \"\",\r\n        \"numero\": null,\r\n        \"complemento\": \"123456789\",\r\n        \"cep\": \"\",\r\n        \"cidade\": \"\",\r\n        \"estado\": null,\r\n        \"pais\": null\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/endereco/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"endereco",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recupera todos enderecos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/endereco",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"endereco"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recupera endereco especifico",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/endereco/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"endereco",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recupera os endereco por pessoa",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/endereco/2/pessoa",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"endereco",
+								"2",
+								"pessoa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post endereco",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {      \"idPessoa\": 2,\r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"LouriVal\",\r\n        \"numero\": 62,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"65314545\",\r\n        \"cidade\": \"Pato Branco\",\r\n        \"estado\": \"Parana\",\r\n        \"pais\": \"Brasil\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/endereco",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"endereco"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put endereco",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{       \r\n        \"idPessoa\": 2,\r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"LouriVal\",\r\n        \"numero\": 62,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"65314545\",\r\n        \"cidade\": \"Pato Branco\",\r\n        \"estado\": \"Parana\",\r\n        \"pais\": \"Brasil\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/endereco/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"endereco",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete endereco",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/endereco/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"endereco",
+								"2"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -671,7 +650,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \r\n        \"nome\": \"Maicon Gerardi\",\r\n        \"dataNascimento\": \"1990-10-10\",\r\n        \"cpf\": \"12345678901\"\r\n    }",
+							"raw": "{\r\n    \r\n        \"nome\": \"Jhennyfer Sobrinho\",\r\n        \"email\": \"jhennyfer.sobrinho@dbccompany.com.br\",\r\n        \"dataNascimento\": \"1990-10-10\",\r\n        \"cpf\": \"12345678901\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -735,7 +714,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"nome\": \"Charles Pereira\",\r\n        \"dataNascimento\": \"1985-05-08\",\r\n        \"cpf\": \"12345678911\"\r\n    }",
+							"raw": "{\r\n\r\n        \"nome\": \"Jhennyfer Sobrinho\",\r\n        \"email\": \"jhennyfer.sobrinho@dbccompany.com.br\",\r\n        \"dataNascimento\": \"1990-10-10\",\r\n        \"cpf\": \"12345678901\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
