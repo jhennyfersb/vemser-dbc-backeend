@@ -3,6 +3,7 @@ package br.com.dbc.vemser.pessoaapi.service;
 import br.com.dbc.vemser.pessoaapi.dto.ContatoCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
 import br.com.dbc.vemser.pessoaapi.entity.Contato;
+import br.com.dbc.vemser.pessoaapi.entity.Pessoa;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.ContatoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,7 +21,7 @@ public class ContatoService {
     private final PessoaService pessoaService;
 
     private final ObjectMapper objectMapper;
-
+    private final EmailService emailService;
 
     public List<ContatoDTO> list() {
         return contatoRepository.list()
@@ -28,35 +29,6 @@ public class ContatoService {
                 .map(contato -> objectMapper.convertValue(contato,ContatoDTO.class))
                 .collect(Collectors.toList());
     }
-
-    public ContatoDTO create(ContatoCreateDTO contato) throws RegraDeNegocioException {
-        Contato contatoEntity = objectMapper.convertValue(contato, Contato.class);
-        Contato contato1 = contatoRepository.create(contatoEntity);
-        pessoaService.findById(contato.getIdPessoa());
-        return objectMapper.convertValue(contato1, ContatoDTO.class);
-    }
-
-    private Contato findByID(Integer id) throws RegraDeNegocioException {
-        Contato contatoRecuperado = contatoRepository.list().stream()
-                .filter(contato -> contato.getIdContato().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new RegraDeNegocioException("Contato não encontrado"));
-        return contatoRecuperado;
-    }
-
-    public ContatoDTO update(Integer id, ContatoCreateDTO contatoAtualizarDTO) throws RegraDeNegocioException {
-        Contato contatoRecuperado = findByID(id);
-        contatoRecuperado.setIdPessoa(contatoAtualizarDTO.getIdPessoa());
-        contatoRecuperado.setTipoContato(contatoAtualizarDTO.getTipoContato());
-        contatoRecuperado.setNumero(contatoAtualizarDTO.getNumero());
-        contatoRecuperado.setDescricao(contatoAtualizarDTO.getDescricao());
-        return objectMapper.convertValue(contatoRecuperado, ContatoDTO.class);
-    }
-    public void delete(Integer id) throws RegraDeNegocioException {
-        Contato contatoDeletado = findByID(id);
-        contatoRepository.delete(contatoDeletado);
-    }
-
     public List<ContatoDTO> listByNumber(Integer id) {
         return contatoRepository.listByNumber(id)
                 .stream()
@@ -69,5 +41,40 @@ public class ContatoService {
                 .stream()
                 .map(contato -> objectMapper.convertValue(contato,ContatoDTO.class))
                 .collect(Collectors.toList());
+    }
+
+    private Contato findByID(Integer id) throws RegraDeNegocioException {
+        Contato contatoRecuperado = contatoRepository.list().stream()
+                .filter(contato -> contato.getIdContato().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new RegraDeNegocioException("Contato não encontrado"));
+        return contatoRecuperado;
+    }
+
+    public ContatoDTO create(Integer idPessoa,ContatoCreateDTO contato) throws RegraDeNegocioException {
+        Contato contatoEntity = objectMapper.convertValue(contato, Contato.class);
+        Contato contato1 = contatoRepository.create(contatoEntity);
+        Pessoa pessoaContato = pessoaService.findById(idPessoa);
+        contato1.setIdPessoa(idPessoa);
+        emailService.sendEmail(pessoaContato,"contato-template.ftl",pessoaContato.getEmail());
+        return objectMapper.convertValue(contato1, ContatoDTO.class);
+    }
+    public ContatoDTO update(Integer id, ContatoCreateDTO contatoAtualizarDTO) throws RegraDeNegocioException {
+        Pessoa pessoaContato = pessoaService.findById(contatoAtualizarDTO.getIdPessoa());
+        Contato contatoRecuperado = findByID(id);
+        pessoaService.findById(contatoAtualizarDTO.getIdPessoa());
+        contatoRecuperado.setIdPessoa(contatoAtualizarDTO.getIdPessoa());
+        contatoRecuperado.setTipoContato(contatoAtualizarDTO.getTipoContato());
+        contatoRecuperado.setNumero(contatoAtualizarDTO.getNumero());
+        contatoRecuperado.setDescricao(contatoAtualizarDTO.getDescricao());
+        emailService.sendEmail(pessoaContato,"contato-template-update.ftl",pessoaContato.getEmail());
+        return objectMapper.convertValue(contatoRecuperado, ContatoDTO.class);
+    }
+
+    public void delete(Integer id) throws RegraDeNegocioException {
+        Contato contatoDeletado = findByID(id);
+        Pessoa pessoaContato = pessoaService.findById(contatoDeletado.getIdPessoa());
+        emailService.sendEmail(pessoaContato,"contato-template-delete.ftl",pessoaContato.getEmail());
+        contatoRepository.delete(contatoDeletado);
     }
 }

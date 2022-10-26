@@ -2,11 +2,12 @@ package br.com.dbc.vemser.pessoaapi.controller;
 
 import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
-import br.com.dbc.vemser.pessoaapi.entity.Pessoa;
-import br.com.dbc.vemser.pessoaapi.exception.BancoDeDadosException;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.service.EmailService;
 import br.com.dbc.vemser.pessoaapi.service.PessoaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -52,14 +53,22 @@ public class PessoaController {
     public Pessoa create(@Valid @RequestBody Pessoa pessoa) throws Exception {
         return pessoaService.create(pessoa);
     }*/
+    @Operation(summary = "listar pessoas", description = "Lista todas as pessoas do banco")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(responseCode = "200", description = "Retorna a lista de pessoas"),
+                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
+                    @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
+            }
+    )
     @GetMapping // localhost:8080/pessoa
     public List<PessoaDTO> list() {
         return pessoaService.list();
     }
 
-    @GetMapping("/byname") // localhost:8080/pessoa/byname?nome=Rafa
-    public List<PessoaDTO> listByName(@RequestParam("nome") String nome) {
-        return pessoaService.listByName(nome);
+    @GetMapping("/{idPessoa}")
+    public List<PessoaDTO> listByPessoa(@PathVariable("idPessoa") Integer idpessoa) {
+        return pessoaService.listById(idpessoa);
     }
 
     @PostMapping

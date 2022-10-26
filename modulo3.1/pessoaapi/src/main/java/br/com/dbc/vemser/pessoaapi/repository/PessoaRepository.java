@@ -41,9 +41,9 @@ public class PessoaRepository {
         listaPessoas.remove(pessoa);
     }
 
-    public List<Pessoa> listByName(String nome) {
+    public List<Pessoa> listByName(Integer idPessoa) {
         return listaPessoas.stream()
-                .filter(pessoa -> pessoa.getNome().toUpperCase().contains(nome.toUpperCase()))
+                .filter(pessoa -> pessoa.getIdPessoa().equals(idPessoa))
                 .collect(Collectors.toList());
     }
 }

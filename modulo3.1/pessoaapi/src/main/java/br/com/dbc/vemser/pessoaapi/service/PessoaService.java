@@ -21,17 +21,6 @@ public class PessoaService {
     private final ObjectMapper objectMapper;
     private final EmailService emailService;
 
-    public PessoaDTO create(PessoaCreateDTO pessoa) throws RegraDeNegocioException {
-        Pessoa pessoaEntity = objectMapper.convertValue(pessoa, Pessoa.class);
-        Pessoa pessoa1 = pessoaRepository.create(pessoaEntity);
-        Map<String, Object> dados = new HashMap<>();
-        dados.put("nome", pessoa1.getNome());
-        dados.put("id", pessoa1.getIdPessoa());
-        dados.put("email", pessoa1.getEmail());
-        emailService.sendEmail(dados, "email-template.ftl");
-        return objectMapper.convertValue(pessoa1, PessoaDTO.class);
-    }
-
     public List<PessoaDTO> list() {
         return pessoaRepository.list()
                 .stream()
@@ -46,6 +35,23 @@ public class PessoaService {
                 .orElseThrow(() -> new RegraDeNegocioException("Pessoa não encontrada"));
     }
 
+    public List<PessoaDTO> listById(Integer idPessoa) {
+        return pessoaRepository.listByName(idPessoa)
+                .stream()
+                .map(pessoa -> objectMapper.convertValue(pessoa, PessoaDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    public PessoaDTO create(PessoaCreateDTO pessoa) throws RegraDeNegocioException {
+        Pessoa pessoaEntity = objectMapper.convertValue(pessoa, Pessoa.class);
+        Pessoa pessoa1 = pessoaRepository.create(pessoaEntity);
+        Map<String, Object> dados = new HashMap<>();
+        dados.put("nome", pessoa1.getNome());
+        dados.put("id", pessoa1.getIdPessoa());
+        emailService.sendEmail(pessoa1, "email-template.ftl", pessoa1.getEmail());
+        return objectMapper.convertValue(pessoa1, PessoaDTO.class);
+    }
+
     public PessoaDTO update(Integer id,
                             PessoaCreateDTO pessoaAtualizarDTO) throws RegraDeNegocioException {
         Pessoa pessoaRecuperada = findById(id);
@@ -54,24 +60,13 @@ public class PessoaService {
         pessoaRecuperada.setDataNascimento(pessoaAtualizarDTO.getDataNascimento());
         Map<String, Object> dados = new HashMap<>();
         dados.put("nome", pessoaRecuperada.getNome());
-        dados.put("email", pessoaRecuperada.getEmail());
-        emailService.sendEmail(dados, "email-template-update.ftl");
+        emailService.sendEmail(pessoaRecuperada, "email-template-update.ftl", pessoaRecuperada.getEmail());
         return objectMapper.convertValue(pessoaRecuperada, PessoaDTO.class);
     }
 
     public void delete(Integer id) throws RegraDeNegocioException {
         Pessoa pessoaRecuperada = findById(id);
         pessoaRepository.delete(pessoaRecuperada);
-        Map<String, Object> dados = new HashMap<>();
-        dados.put("nome", pessoaRecuperada.getNome());
-        dados.put("email", pessoaRecuperada.getEmail());
-        emailService.sendEmail(dados, "email-template-delete.ftl");
-    }
-
-    public List<PessoaDTO> listByName(String nome) {
-        return pessoaRepository.listByName(nome)
-                .stream()
-                .map(pessoa -> objectMapper.convertValue(pessoa, PessoaDTO.class))
-                .collect(Collectors.toList());
+        emailService.sendEmail(pessoaRecuperada, "email-template-delete.ftl", pessoaRecuperada.getEmail());
     }
 }

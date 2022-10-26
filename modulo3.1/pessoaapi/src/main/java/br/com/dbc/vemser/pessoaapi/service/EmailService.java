@@ -1,6 +1,7 @@
 package br.com.dbc.vemser.pessoaapi.service;
 
 
+import br.com.dbc.vemser.pessoaapi.entity.Pessoa;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 @Component
@@ -63,22 +65,25 @@ public class EmailService {
         emailSender.send(message);
     }
 
-    public void sendEmail(Map<String,Object> dados ,String templateName) {
+    public void sendEmail(Pessoa pessoa, String templateName, String destinatario) {
         MimeMessage mimeMessage = emailSender.createMimeMessage();
+        Map<String, Object> dados = new HashMap<>();
+        dados.put("nome", pessoa.getNome());
+        dados.put("id", pessoa.getIdPessoa());
         try {
-
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
             mimeMessageHelper.setFrom(from);
-            mimeMessageHelper.setTo(TO);
+            mimeMessageHelper.setTo(destinatario);
             mimeMessageHelper.setSubject("subject");
-            mimeMessageHelper.setText(geContentFromTemplate(dados,templateName), true);
+            dados.put("email", from);
+            mimeMessageHelper.setText(geContentFromTemplate(dados, templateName), true);
             emailSender.send(mimeMessageHelper.getMimeMessage());
         } catch (MessagingException | IOException | TemplateException e) {
             e.printStackTrace();
         }
     }
 
-    public String geContentFromTemplate(Map<String,Object> dados, String templateName) throws IOException, TemplateException {
+    public String geContentFromTemplate(Map<String, Object> dados, String templateName) throws IOException, TemplateException {
         Template template = fmConfiguration.getTemplate(templateName);
         String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, dados);
         return html;

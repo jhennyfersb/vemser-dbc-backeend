@@ -2,6 +2,7 @@ package br.com.dbc.vemser.pessoaapi.controller;
 
 import br.com.dbc.vemser.pessoaapi.dto.EnderecoCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.EnderecoDTO;
+import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.service.EnderecoService;
 import lombok.extern.slf4j.Slf4j;
@@ -40,10 +41,11 @@ public class EnderecoController {
         return enderecoService.buscarPorId(id);
     }
 
-    @PostMapping
-    public ResponseEntity<EnderecoDTO> create(@Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException {
+    @PostMapping("/{idPessoa}")
+    public ResponseEntity<EnderecoDTO> create(@PathVariable("idPessoa") Integer idPessoa,
+            @Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException {
         log.info("criando endereço..");
-        EnderecoDTO enderecoDTO = enderecoService.create(endereco);
+        EnderecoDTO enderecoDTO = enderecoService.create(idPessoa,endereco);
         log.info("endereço criado ...");
         return new ResponseEntity<>(enderecoDTO, HttpStatus.OK);
     }

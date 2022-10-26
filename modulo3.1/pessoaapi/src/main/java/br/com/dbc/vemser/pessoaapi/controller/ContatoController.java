@@ -44,20 +44,21 @@ public class ContatoController {
         return contatoService.buscarPorId(id);
     }
 
+    @PostMapping("/{idPessoa}")
+    public ResponseEntity<ContatoDTO> create(@PathVariable("idPessoa") Integer idPessoa,
+            @Valid @RequestBody ContatoCreateDTO contatoCreateDTO) throws RegraDeNegocioException {
+        log.info("criando contato...");
+        ContatoDTO contatoDTO = contatoService.create(idPessoa,contatoCreateDTO);
+        log.info("contato criado!");
+        return new ResponseEntity<>(contatoDTO, HttpStatus.OK);
+    }
+
     @PutMapping("/{idContato}")
     public ResponseEntity<ContatoDTO> update(@PathVariable("idContato") Integer id,
                                              @Valid @RequestBody ContatoCreateDTO contatoCreateDTO) throws RegraDeNegocioException {
         log.info("atualizando contato..");
         ContatoDTO contatoDTO = contatoService.update(id, contatoCreateDTO);
         log.info("contato atualizado");
-        return new ResponseEntity<>(contatoDTO, HttpStatus.OK);
-    }
-
-    @PostMapping
-    public ResponseEntity<ContatoDTO> create(@Valid @RequestBody ContatoCreateDTO contatoCreateDTO) throws RegraDeNegocioException {
-        log.info("criando contato...");
-        ContatoDTO contatoDTO = contatoService.create(contatoCreateDTO);
-        log.info("contato criado!");
         return new ResponseEntity<>(contatoDTO, HttpStatus.OK);
     }
 
