@@ -101,7 +101,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"tipoContato\": \"RESIDENCIAL\",\r\n        \"numero\": \"046991180197\",\r\n        \"descricao\": \"whatsapp\"\r\n    }",
+							"raw": "{       \"idPessoa\": 1,\r\n        \"tipoContato\": \"RESIDENCIAL\",\r\n        \"numero\": \"046991180197\",\r\n        \"descricao\": \"whatsapp\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -109,14 +109,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/contato/4",
+							"raw": "localhost:8080/contato/2",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"contato",
-								"4"
+								"2"
 							]
 						}
 					},
@@ -137,13 +137,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/contato",
+							"raw": "localhost:8080/contato/55",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"contato"
+								"contato",
+								"55"
 							]
 						}
 					},
@@ -156,7 +157,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idPessoa\": 1,\r\n    \"tipoContato\": null,\r\n    \"numero\": null,\r\n    \"descricao\": null\r\n}",
+							"raw": "{\r\n    \"tipoContato\": null,\r\n    \"numero\": null,\r\n    \"descricao\": null\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -164,13 +165,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/contato",
+							"raw": "localhost:8080/contato/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"contato"
+								"contato",
+								"1"
 							]
 						}
 					},
@@ -202,7 +204,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"tipoContato\": \"RESIDENCIAL\",\r\n        \"numero\": \"046991180197\",\r\n        \"descricao\": \"whatsapp\"\r\n    }",
+							"raw": "{       \r\n        \"idPessoa\": 1,\r\n        \"tipoContato\": \"RESIDENCIAL\",\r\n        \"numero\": \"046991180197\",\r\n        \"descricao\": \"whatsapp\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -230,7 +232,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"tipoContato\": null,\r\n        \"numero\": null,\r\n        \"descricao\": \"\"\r\n    }",
+							"raw": "{       \r\n        \"idPessoa\": 1,\r\n        \"tipoContato\": null,\r\n        \"numero\": null,\r\n        \"descricao\": \"\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -258,7 +260,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"idPessoa\": 1,\r\n    \"tipoContato\": null,\r\n    \"numero\": \"12345678901234\",\r\n    \"descricao\": \"\"\r\n}",
+							"raw": "{\r\n    \r\n    \"tipoContato\": null,\r\n    \"numero\": \"12345678901234\",\r\n    \"descricao\": \"\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -266,13 +268,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/contato",
+							"raw": "localhost:8080/contato/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"contato"
+								"contato",
+								"1"
 							]
 						}
 					},
@@ -285,7 +288,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"tipoContato\": null,\r\n    \"numero\": \"12345678901234\",\r\n    \"descricao\": \"\"\r\n}",
+							"raw": "{   \r\n    \"idPessoa\": 1,\r\n    \"tipoContato\": null,\r\n    \"numero\": \"12345678901234\",\r\n    \"descricao\": \"\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -318,7 +321,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"idPessoa\": 99,\r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"Av.Brasil\",\r\n        \"numero\": 456,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"69314540\",\r\n        \"cidade\": \"Itaituba\",\r\n        \"estado\": \"Para\",\r\n        \"pais\": \"Brasil\"\r\n    }",
+							"raw": "{\r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"Av.Brasil\",\r\n        \"numero\": 456,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"69314540\",\r\n        \"cidade\": \"Itaituba\",\r\n        \"estado\": \"Para\",\r\n        \"pais\": \"Brasil\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -326,40 +329,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/endereco",
+							"raw": "localhost:8080/endereco/111",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"endereco"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "nao pode ser vazio",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n        \"idPessoa\": 1,\r\n        \"tipo\": \"\",\r\n        \"logradouro\": \"\",\r\n        \"numero\": 456,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"\",\r\n        \"cidade\": \"\",\r\n        \"estado\": \"\",\r\n        \"pais\": \"\"\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "localhost:8080/endereco",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"endereco"
+								"endereco",
+								"111"
 							]
 						}
 					},
@@ -372,7 +349,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"idPessoa\": 12,\r\n        \"tipo\": null,\r\n        \"logradouro\": \"\",\r\n        \"numero\": null,\r\n        \"complemento\": null,\r\n        \"cep\": null,\r\n        \"cidade\": null,\r\n        \"estado\": null,\r\n        \"pais\": null\r\n    }",
+							"raw": "{\r\n        \r\n        \"tipo\": null,\r\n        \"logradouro\": \"\",\r\n        \"numero\": null,\r\n        \"complemento\": null,\r\n        \"cep\": null,\r\n        \"cidade\": null,\r\n        \"estado\": null,\r\n        \"pais\": null\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -380,13 +357,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/endereco",
+							"raw": "localhost:8080/endereco/1",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"endereco"
+								"endereco",
+								"1"
 							]
 						}
 					},
@@ -427,7 +405,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"tipo\": null,\r\n        \"logradouro\": null,\r\n        \"numero\": null,\r\n        \"complemento\": null,\r\n        \"cep\": null,\r\n        \"cidade\": null,\r\n        \"estado\": null,\r\n        \"pais\": null\r\n    }",
+							"raw": "{       \"idPessoa\": 2,\r\n        \"tipo\": null,\r\n        \"logradouro\": null,\r\n        \"numero\": null,\r\n        \"complemento\": null,\r\n        \"cep\": null,\r\n        \"cidade\": null,\r\n        \"estado\": null,\r\n        \"pais\": null\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -474,7 +452,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"tipo\": null,\r\n        \"logradouro\": \"\",\r\n        \"numero\": null,\r\n        \"complemento\": \"123456789\",\r\n        \"cep\": \"\",\r\n        \"cidade\": \"\",\r\n        \"estado\": null,\r\n        \"pais\": null\r\n    }",
+							"raw": "{       \"idPessoa\": 1,\r\n        \"tipo\": null,\r\n        \"logradouro\": \"\",\r\n        \"numero\": null,\r\n        \"complemento\": \"123456789\",\r\n        \"cep\": \"\",\r\n        \"cidade\": \"\",\r\n        \"estado\": null,\r\n        \"pais\": null\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -571,7 +549,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {      \"idPessoa\": 2,\r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"LouriVal\",\r\n        \"numero\": 62,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"65314545\",\r\n        \"cidade\": \"Pato Branco\",\r\n        \"estado\": \"Parana\",\r\n        \"pais\": \"Brasil\"\r\n    }",
+							"raw": " {      \r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"LouriVal\",\r\n        \"numero\": 62,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"65314545\",\r\n        \"cidade\": \"Pato Branco\",\r\n        \"estado\": \"Parana\",\r\n        \"pais\": \"Brasil\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -607,14 +585,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/endereco/9",
+							"raw": "localhost:8080/endereco/2",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"endereco",
-								"9"
+								"2"
 							]
 						}
 					},
@@ -626,14 +604,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/endereco/2",
+							"raw": "localhost:8080/endereco/5",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"endereco",
-								"2"
+								"5"
 							]
 						}
 					},
@@ -677,14 +655,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/pessoa/1",
+							"raw": "localhost:8080/pessoa/5",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"pessoa",
-								"1"
+								"5"
 							]
 						}
 					},
