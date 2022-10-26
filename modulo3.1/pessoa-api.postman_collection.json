@@ -399,7 +399,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"Av.Brasil\",\r\n        \"numero\": 456,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"69314540\",\r\n        \"cidade\": \"Itaituba\",\r\n        \"estado\": \"Para\",\r\n        \"pais\": \"Brasil\"\r\n    }",
+							"raw": "{       \"idPessoa\": 2,\r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"Av.Brasil\",\r\n        \"numero\": 456,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"69314540\",\r\n        \"cidade\": \"Itaituba\",\r\n        \"estado\": \"Para\",\r\n        \"pais\": \"Brasil\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -579,13 +579,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/endereco",
+							"raw": "localhost:8080/endereco/2",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"endereco"
+								"endereco",
+								"2"
 							]
 						}
 					},
@@ -598,7 +599,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{       \r\n        \"idPessoa\": 2,\r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"LouriVal\",\r\n        \"numero\": 62,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"65314545\",\r\n        \"cidade\": \"Pato Branco\",\r\n        \"estado\": \"Parana\",\r\n        \"pais\": \"Brasil\"\r\n    }",
+							"raw": "{      \r\n        \"idPessoa\": 1,\r\n        \"tipo\": \"RESIDENCIAL\",\r\n        \"logradouro\": \"Av.Brasil\",\r\n        \"numero\": 456,\r\n        \"complemento\": \"\",\r\n        \"cep\": \"69314540\",\r\n        \"cidade\": \"Itaituba\",\r\n        \"estado\": \"Para\",\r\n        \"pais\": \"Brasil\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -606,14 +607,14 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/endereco/2",
+							"raw": "localhost:8080/endereco/9",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
 								"endereco",
-								"2"
+								"9"
 							]
 						}
 					},
