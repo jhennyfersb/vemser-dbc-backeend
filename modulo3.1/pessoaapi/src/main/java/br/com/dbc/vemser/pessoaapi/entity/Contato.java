@@ -8,6 +8,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class Contato {
+
     private Integer idContato;
 
     private Integer idPessoa;
