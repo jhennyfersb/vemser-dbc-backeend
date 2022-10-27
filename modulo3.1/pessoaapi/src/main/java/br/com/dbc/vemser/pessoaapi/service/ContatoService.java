@@ -52,10 +52,10 @@ public class ContatoService {
     }
 
     public ContatoDTO create(Integer idPessoa,ContatoCreateDTO contato) throws RegraDeNegocioException {
-        Contato contatoEntity = objectMapper.convertValue(contato, Contato.class);
-        Contato contato1 = contatoRepository.create(contatoEntity);
         Pessoa pessoaContato = pessoaService.findById(idPessoa);
-        contato1.setIdPessoa(idPessoa);
+        Contato contatoEntity = objectMapper.convertValue(contato, Contato.class);
+        contatoEntity.setIdPessoa(idPessoa);
+        Contato contato1 = contatoRepository.create(contatoEntity);
         emailService.sendEmail(pessoaContato,"contato-template.ftl",pessoaContato.getEmail());
         return objectMapper.convertValue(contato1, ContatoDTO.class);
     }
