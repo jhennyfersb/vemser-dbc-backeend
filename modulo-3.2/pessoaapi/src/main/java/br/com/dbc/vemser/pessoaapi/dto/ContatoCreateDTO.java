@@ -15,10 +15,10 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class ContatoCreateDTO {
 
-/*
+
     @Schema(description = "Id da Pessoa :")
     private Integer idPessoa;
-*/
+
     @Schema(description = "Tipo de contato : 1-Residencial 2-Comercial",example = "RESIDENCIAL")
     @NotNull
     private TipoContato tipoContato;
@@ -32,4 +32,5 @@ public class ContatoCreateDTO {
     @NotBlank
     @NotNull
     private String descricao;
+
 }

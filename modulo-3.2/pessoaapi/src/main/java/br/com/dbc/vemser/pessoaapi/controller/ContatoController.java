@@ -2,7 +2,6 @@ package br.com.dbc.vemser.pessoaapi.controller;
 
 import br.com.dbc.vemser.pessoaapi.dto.ContatoCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.ContatoDTO;
-import br.com.dbc.vemser.pessoaapi.entity.ContatoEntity;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.service.ContatoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,7 +25,19 @@ import java.util.List;
 public class ContatoController {
     private final ContatoService contatoService;
 
-
+    @Operation(hidden = true)
+    @GetMapping("/hello ")
+    public String hello() {
+        return "hello word";
+    }
+    @Operation(summary = "listar contato", description = "Lista todas os contatos do banco")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(responseCode = "200", description = "Retorna a lista de contatos"),
+                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
+                    @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
+            }
+    )
     @GetMapping
     public List<ContatoDTO> list() {
         return contatoService.list();
@@ -39,10 +50,10 @@ public class ContatoController {
                     @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
             }
     )
-    @GetMapping("/{idContato}")
-    public ContatoDTO findByContato(@PathVariable("idContato") Integer id) throws RegraDeNegocioException {
-        return contatoService.findByContato(id);
-    }/*
+   @GetMapping("/{idContato}")
+    public List<ContatoDTO> listByNumber(@PathVariable("idContato") Integer id) throws RegraDeNegocioException {
+        return contatoService.listByContato(id);
+    }
     @Operation(summary = "listar todos contatos por id da pessoa", description = "Lista todas os contatos do banco com o id da pessoa")
     @ApiResponses(
             value = {
@@ -51,11 +62,10 @@ public class ContatoController {
                     @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
             }
     )
-
     @GetMapping("/{idPessoa}/pessoa")
     public List<ContatoDTO> listPessoaId(@PathVariable("idPessoa") Integer id) {
         return contatoService.buscarPorId(id);
-    }*/
+    }
     @Operation(summary = "cria contato por id da pessoa", description = "adiciona contato no banco")
     @ApiResponses(
             value = {
@@ -64,10 +74,11 @@ public class ContatoController {
                     @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
             }
     )
-    @PostMapping
-    public ResponseEntity<ContatoDTO> create(@Valid @RequestBody ContatoCreateDTO contatoCreateDTO) throws RegraDeNegocioException {
+    @PostMapping("/{idPessoa}")
+    public ResponseEntity<ContatoDTO> create(@PathVariable("idPessoa") Integer idPessoa,
+                                             @Valid @RequestBody ContatoCreateDTO contatoCreateDTO) throws RegraDeNegocioException {
         log.info("criando contato...");
-        ContatoDTO contatoDTO = contatoService.create(contatoCreateDTO);
+        ContatoDTO contatoDTO = contatoService.create(idPessoa,contatoCreateDTO);
         log.info("contato criado!");
         return new ResponseEntity<>(contatoDTO, HttpStatus.OK);
     }
@@ -96,7 +107,7 @@ public class ContatoController {
             }
     )
     @DeleteMapping("/{idContato}")
-    public ResponseEntity<ContatoEntity> delete(@Valid @PathVariable("idContato") Integer idContato) throws RegraDeNegocioException {
+    public ResponseEntity<ContatoDTO> delete(@Valid @PathVariable("idContato") Integer idContato) throws RegraDeNegocioException {
         log.info("deletando pessoa..");
         contatoService.delete(idContato);
         log.info("pessoa deletada");

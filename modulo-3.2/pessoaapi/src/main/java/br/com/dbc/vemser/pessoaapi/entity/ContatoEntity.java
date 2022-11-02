@@ -18,7 +18,8 @@ public class ContatoEntity {
     @Column(name = "id_contato")
     private Integer idContato;
 
-    //private Integer idPessoa;
+    @Column(name = "id_pessoa")
+    private Integer idPessoa;
 
     @Column(name = "tipo")
     @Enumerated(EnumType.ORDINAL)

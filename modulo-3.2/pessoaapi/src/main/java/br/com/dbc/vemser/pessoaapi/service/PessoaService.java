@@ -9,9 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -67,7 +65,7 @@ public class PessoaService {
 
     public void delete(Integer id) throws RegraDeNegocioException {
         PessoaEntity pessoaEntityRecuperada = findById(id);
-        pessoaRepository.delete(pessoaEntityRecuperada);
+        pessoaRepository.deleteById(pessoaEntityRecuperada.getIdPessoa());
         //emailService.sendEmail(pessoaEntityRecuperada,
                // "email-template-delete.ftl",
                // pessoaEntityRecuperada.getEmail());
