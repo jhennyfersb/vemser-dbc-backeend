@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @Entity
+@Table(name = "PESSOA_X_FILME")
 public class PessoaFilmeEntity implements Serializable {
 
     @EmbeddedId
