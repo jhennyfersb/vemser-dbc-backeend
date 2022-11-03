@@ -55,7 +55,7 @@ public class EnderecoController {
     public List<EnderecoDTO> listByEndereco(@PathVariable("idEndereco") Integer id) {
         return enderecoService.listByEndereco(id);
     }
-/*
+
     @Operation(summary = "listar todos enderecos por id da pessoa", description = "Lista todos os enderecos do banco com o id da pessoa")
     @ApiResponses(
             value = {
@@ -66,10 +66,10 @@ public class EnderecoController {
     )
 
     @GetMapping("/{idPessoa}/pessoa")
-    public List<EnderecoDTO> listPessoaId(@PathVariable("idPessoa") String id) {
-        return enderecoService.buscarPorId(id);
+    public List<EnderecoDTO> listPessoaId(@PathVariable("idPessoa") Integer id) {
+        return enderecoService.listByEndereco(id);
     }
-*/
+
     @Operation(summary = "cria endereco ", description = "adiciona endereco no banco")
     @ApiResponses(
             value = {

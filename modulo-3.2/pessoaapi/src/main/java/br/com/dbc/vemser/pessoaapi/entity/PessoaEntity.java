@@ -1,16 +1,17 @@
 package br.com.dbc.vemser.pessoaapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @AllArgsConstructor
 @Getter
 @Setter
-// @Data // NÃO PODE, PROIBIDO
 @Entity(name = "Pessoa")
 public class PessoaEntity {
 
@@ -31,6 +32,27 @@ public class PessoaEntity {
 
     @Column(name = "cpf")
     private String cpf;
+
+    @OneToOne(fetch = FetchType.LAZY,mappedBy = "pessoa",cascade = CascadeType.ALL,orphanRemoval = true)
+    private PetEntity pet;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "pessoa",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<ContatoEntity> contatos;
+
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "Pessoa_X_Pessoa_Endereco",
+    joinColumns = @JoinColumn(name = "id_pessoa"),
+    inverseJoinColumns = @JoinColumn(name = "id_endereco"))
+    private Set<EnderecoEntity> enderecos;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true )
+    @JoinColumn(name = "ID_PESSOA",referencedColumnName = "ID_PESSOA")
+    private Set<PessoaFilmeEntity> pessoaXFilmes;
+
 
     public PessoaEntity() {
     }

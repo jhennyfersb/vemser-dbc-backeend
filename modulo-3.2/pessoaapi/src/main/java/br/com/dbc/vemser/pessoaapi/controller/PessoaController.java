@@ -1,9 +1,9 @@
 package br.com.dbc.vemser.pessoaapi.controller;
 
-import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
-import br.com.dbc.vemser.pessoaapi.dto.PessoaDTO;
+import br.com.dbc.vemser.pessoaapi.dto.*;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
-import br.com.dbc.vemser.pessoaapi.service.EmailService;
+import br.com.dbc.vemser.pessoaapi.service.ContatoService;
+import br.com.dbc.vemser.pessoaapi.service.EnderecoService;
 import br.com.dbc.vemser.pessoaapi.service.PessoaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -28,28 +28,12 @@ public class PessoaController {
 
     private final PessoaService pessoaService;
 
-    private final EmailService emailService;
 
     @Value("${user}")
     private String usuario;
 
     @Value("${spring.aplication.name}")
     private String app;
-    @Operation(hidden = true)
-    @GetMapping("/hello") // localhost:8080/pessoa/hello
-    public String hello() {
-        log.trace("A Trace Message");
-        log.debug("A DEBUG Message");
-        log.info("An INFO Message");
-        log.warn("A WARN Message");
-        log.error("An ERROR Message");
-        try {
-            emailService.sendSimpleMessage();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "Hello world!";
-    }
 
     @Operation(summary = "listar pessoas", description = "Lista todas as pessoas do banco")
     @ApiResponses(
@@ -59,22 +43,64 @@ public class PessoaController {
                     @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
             }
     )
-    @GetMapping // localhost:8080/pessoa
+    @GetMapping
     public List<PessoaDTO> list() {
         return pessoaService.list();
     }
 
-    @Operation(summary = "listar pessoas pelo id", description = "Lista todas as pessoas do banco")
+    @Operation(summary = "listar contatos de pessoas pelo id", description = "Lista todas as pessoas do banco")
     @ApiResponses(
             value = {
-                    @ApiResponse(responseCode = "200", description = "Retorna a lista de pessoas"),
+                    @ApiResponse(responseCode = "200", description = "Retorna a lista de pessoas e lista de contatos de pessoas"),
                     @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
                     @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
             }
     )
+    @GetMapping("/listar-com-endereco")
+    public List<PessoaComEnderecoDTO> listComEndereco(@RequestParam(required = false) Integer idPessoa) {
+        if (idPessoa != null) {
+            return List.of(pessoaService.getPessoasComEnderecosPorId(idPessoa));
+        } else {
+            return pessoaService.listPessoasComEnderecos();
+        }
+    }
+
+    @Operation(summary = "listar endereco de pessoas pelo id", description = "Lista todas as pessoas do banco")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(responseCode = "200", description = "Retorna a lista de pessoas e lista de endereco de pessoas"),
+                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
+                    @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
+            }
+    )
+    @GetMapping("/listar-com-contatos")
+    public List<PessoaComContatoDTO> listComContatos(@RequestParam(required = false) Integer idPessoa) {
+        if (idPessoa != null) {
+            return List.of(pessoaService.getPessoaComContatosPorId(idPessoa));
+        } else {
+            return pessoaService.listPessoasComContatos();
+        }
+    }
+    @Operation(summary = "listar filmes assistidos de pessoas pelo id", description = "Lista todas as pessoas do banco")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(responseCode = "200", description = "Retorna a lista de pessoas e lista de filmes assistidos de pessoa"),
+                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
+                    @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
+            }
+    )
+    @GetMapping("/listar-com-filmes-assistidos")
+    public List<PessoaComFilmeAssistidoDTO> listComFilmesAssistidos(@RequestParam(required = false) Integer idPessoa) {
+        if (idPessoa != null) {
+            return List.of(pessoaService.getPessoasComFilmesAssistidosPorId(idPessoa));
+        } else {
+            return pessoaService.listPessoasComFilmesAssistidos();
+        }
+    }
+
     @GetMapping("/{idPessoa}")
-    public List<PessoaDTO> listByPessoa(@PathVariable("idPessoa") Integer idpessoa) {
-        return pessoaService.listById(idpessoa);
+    public PessoaDTO findById(@PathVariable Integer idPessoa) throws RegraDeNegocioException {
+        return pessoaService.getPorId(idPessoa);
     }
 
     @Operation(summary = "cria pessoa", description = "adiciona pessoa no banco")
@@ -125,4 +151,5 @@ public class PessoaController {
         log.info("pessoa deletada");
 
     }
+
 }

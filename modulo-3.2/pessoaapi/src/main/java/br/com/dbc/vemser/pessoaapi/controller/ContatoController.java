@@ -25,11 +25,6 @@ import java.util.List;
 public class ContatoController {
     private final ContatoService contatoService;
 
-    @Operation(hidden = true)
-    @GetMapping("/hello ")
-    public String hello() {
-        return "hello word";
-    }
     @Operation(summary = "listar contato", description = "Lista todas os contatos do banco")
     @ApiResponses(
             value = {
@@ -66,6 +61,7 @@ public class ContatoController {
     public List<ContatoDTO> listPessoaId(@PathVariable("idPessoa") Integer id) {
         return contatoService.buscarPorId(id);
     }
+
     @Operation(summary = "cria contato por id da pessoa", description = "adiciona contato no banco")
     @ApiResponses(
             value = {
@@ -108,9 +104,9 @@ public class ContatoController {
     )
     @DeleteMapping("/{idContato}")
     public ResponseEntity<ContatoDTO> delete(@Valid @PathVariable("idContato") Integer idContato) throws RegraDeNegocioException {
-        log.info("deletando pessoa..");
+        log.info("deletando contato..");
         contatoService.delete(idContato);
-        log.info("pessoa deletada");
+        log.info("contato deletado");
         return ResponseEntity.noContent().build();
     }
 }

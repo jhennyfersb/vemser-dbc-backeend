@@ -41,7 +41,7 @@ public class ContatoService {
     }
 
     public ContatoDTO create(Integer idPessoa,ContatoCreateDTO contato) throws RegraDeNegocioException {
-        PessoaEntity pessoaEntityContato = pessoaService.findById(idPessoa);
+        PessoaEntity pessoaEntityContato = pessoaService.findByIdPessoa(idPessoa);
 
         ContatoEntity contatoEntity = objectMapper.convertValue(contato, ContatoEntity.class);
         contatoEntity.setIdPessoa(idPessoa);
@@ -51,7 +51,7 @@ public class ContatoService {
     }
 
     public ContatoDTO update(Integer id, ContatoCreateDTO contatoAtualizarDTO) throws RegraDeNegocioException {
-        PessoaEntity pessoaEntityContato = pessoaService.findById(contatoAtualizarDTO.getIdPessoa());
+        PessoaEntity pessoaEntityContato = pessoaService.findByIdPessoa(contatoAtualizarDTO.getIdPessoa());
         ContatoEntity contatoEntityRecuperado = findByIdContato(id);
 
         contatoEntityRecuperado.setNumero(contatoAtualizarDTO.getNumero());
@@ -64,7 +64,8 @@ public class ContatoService {
         return objectMapper.convertValue(contatoEntityRecuperado, ContatoDTO.class);
     }
 
-    public List<ContatoDTO> buscarPorId(Integer pessoaId) {
+    public List<ContatoDTO> buscarPorId(Integer id) {
+        contatoRepository.findById(id);
         return null;
       /*  return contatoRepository.buscarPorId(pessoaId)
                 .stream()
@@ -76,7 +77,7 @@ public class ContatoService {
 
     public void delete(Integer id) throws RegraDeNegocioException {
         ContatoEntity contatoEntityDeletado = findByIdContato(id);
-        PessoaEntity pessoaEntityContato = pessoaService.findById(contatoEntityDeletado.getIdPessoa());
+        PessoaEntity pessoaEntityContato = pessoaService.findByIdPessoa(contatoEntityDeletado.getIdPessoa());
         emailService.sendEmail(pessoaEntityContato, "contato-template-delete.ftl", pessoaEntityContato.getEmail());
         contatoRepository.delete(contatoEntityDeletado);
     }

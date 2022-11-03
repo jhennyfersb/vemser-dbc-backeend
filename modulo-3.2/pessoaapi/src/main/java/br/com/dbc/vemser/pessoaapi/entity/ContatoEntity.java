@@ -1,7 +1,7 @@
 package br.com.dbc.vemser.pessoaapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import javax.persistence.*;
 
@@ -25,8 +25,15 @@ public class ContatoEntity {
     @Enumerated(EnumType.ORDINAL)
     private TipoContato tipoContato;
 
+    @Column(name = "numero")
     private String numero;
 
+    @Column(name = "descricao")
     private String descricao;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_pessoa",referencedColumnName = "id_pessoa",insertable = false,updatable = false)
+    private PessoaEntity pessoa;
 
 }
