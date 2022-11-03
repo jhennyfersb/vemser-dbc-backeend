@@ -4,13 +4,13 @@ javax.persistence.Embeddable - anotação JPA
 
 javax.persistence.EmbeddedId - anotação JPA
 
--Representamos uma chave primária composta no Spring Data usando a anotação @Embeddable em uma classe.
+Representamos uma chave primária composta no Spring Data usando a anotação @Embeddable em uma classe.
 
--A classe incorporável deve ser anotada como Embeddable.
+A classe incorporável deve ser anotada como Embeddable.
 
--EmbeddedId para inserir uma chave composta em uma entidade.
+EmbeddedId para inserir uma chave composta em uma entidade.
 
--No Exemplo a classe PessoaFilmeId recebe a anotação @Embeddable para representar a chave primaria composta de PessoaFilmeEntity
+No Exemplo a classe PessoaFilmeId recebe a anotação @Embeddable para representar a chave primaria composta de PessoaFilmeEntity
 
 @AllArgsConstructor
 
@@ -33,9 +33,9 @@ public class PessoaFilmeId implements Serializable {
     private Integer idPessoa;
 
 }
--Para inserir  uma chave composta em uma entidade devemos utilizar a anotação @EmbeddedId
+Para inserir  uma chave composta em uma entidade devemos utilizar a anotação @EmbeddedId
 
--então adiciona @EmbeddedId em PessoaFilmeEntity em um campo do tipo @Embeddable
+então adiciona @EmbeddedId em PessoaFilmeEntity em um campo do tipo @Embeddable
 
 @AllArgsConstructor
 
@@ -65,9 +65,9 @@ public class PessoaFilmeEntity implements Serializable {
 
 }
 
--Essa chave de id_filme e id_pessoa é então incorporada na classe de entidade PessoaFilmeEntity correspondente  como a chave primária composta 
+Essa chave de id_filme e id_pessoa é então incorporada na classe de entidade PessoaFilmeEntity correspondente  como a chave primária composta 
 
--usando a anotação @EmbeddedId em um campo do tipo @Embeddable que seria o pessoaFilmeId .
+usando a anotação @EmbeddedId em um campo do tipo @Embeddable que seria o pessoaFilmeId .
 
 
 javax.persistence.Embedded - anotação JPA
@@ -98,11 +98,11 @@ public class ContatoEmpresaEntity {
     
 }
 
--A anotação JPA @Embedded é usada para incorporar um tipo em outra entidade.
+A anotação JPA @Embedded é usada para incorporar um tipo em outra entidade.
 
--Especifica um campo ou propriedade persistente de uma entidade cujo valor é uma instância de uma classe incorporável.
+Especifica um campo ou propriedade persistente de uma entidade cujo valor é uma instância de uma classe incorporável.
 
--A classe incorporável deve ser anotada como Embeddable.
+A classe incorporável deve ser anotada como Embeddable.
 
 @AllArgsConstructor
 
@@ -133,6 +133,6 @@ public class EmpresaEntity {
   
 }
 
--Como resultado, temos nossa entidade Empresa , incorporando detalhes da classe ContatoEmpresaEntity e mapeando para uma única tabela de banco de dados.
+Como resultado, temos nossa entidade Empresa , incorporando detalhes da classe ContatoEmpresaEntity e mapeando para uma única tabela de banco de dados.
 
-_O @Embedded foi usado para incorporar um tipo em outra entidade.
+O @Embedded foi usado para incorporar um tipo em outra entidade.
