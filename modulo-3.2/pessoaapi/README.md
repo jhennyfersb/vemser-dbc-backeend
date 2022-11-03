@@ -75,27 +75,21 @@ javax.persistence.Embedded - anotação JPA
 A JPA fornece a anotação @Embeddable  para declarar que uma classe será incorporada por outras entidades.
 
 
+
 @AllArgsConstructor
 
 @Getter
 
 @Setter
 
-@ToString
-
 @NoArgsConstructor
 
 @Embeddable
 
-public class ContatoEmpresaEntity {
+public class SexoEntity {
 
-    private String nome;
+    private String sexo;
 
-    private String sobrenome;
-
-    private String telefone;
-
-    
 }
 
 A anotação JPA @Embedded é usada para incorporar um tipo em outra entidade.
@@ -104,35 +98,72 @@ Especifica um campo ou propriedade persistente de uma entidade cujo valor é uma
 
 A classe incorporável deve ser anotada como Embeddable.
 
+
 @AllArgsConstructor
 
 @Getter
 
 @Setter
 
-@ToString
+@Entity(name = "Pessoa")
 
-@NoArgsConstructor
-
-@Entity
-
-public class EmpresaEntity {
+public class PessoaEntity {
 
     @Id
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PESSOA2")
+    @SequenceGenerator(name = "SEQ_PESSOA2", sequenceName = "seq_pessoa2", allocationSize = 1)
+    @Column(name = "id_pessoa")
+    private Integer idPessoa;
 
+    @Column(name = "nome")
     private String nome;
 
-    private String endereco;
+    @Column(name = "data_nascimento")
+    private LocalDate dataNascimento;
 
-    private String telefone;
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "cpf")
+    private String cpf;
 
     @Embedded
-    private ContatoEmpresa contatoEmpresa;
-  
-}
+    private SexoEntity sexo;
 
-Como resultado, temos nossa entidade Empresa , incorporando detalhes da classe ContatoEmpresaEntity e mapeando para uma única tabela de banco de dados.
+    @OneToOne(fetch = FetchType.LAZY,mappedBy = "pessoa",cascade = CascadeType.ALL,orphanRemoval = true)
+    private PetEntity pet;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "pessoa",cascade = CascadeType.ALL,orphanRemoval = true)
+    private Set<ContatoEntity> contatos;
+
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "Pessoa_X_Pessoa_Endereco",
+    joinColumns = @JoinColumn(name = "id_pessoa"),
+    inverseJoinColumns = @JoinColumn(name = "id_endereco"))
+    private Set<EnderecoEntity> enderecos;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true )
+    @JoinColumn(name = "ID_PESSOA",referencedColumnName = "ID_PESSOA")
+    private Set<PessoaFilmeEntity> pessoaXFilmes;
+
+
+    public PessoaEntity() {
+    }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "idPessoa=" + idPessoa +
+                ", nome='" + nome + '\'' +
+                ", dataNascimento=" + dataNascimento +
+                ", cpf='" + cpf + '\'' +
+                '}';
+    }
+}
+Como resultado, temos nossa entidade PessoaEntity , incorporando detalhes da classe SexoEntity e mapeando para uma única tabela de banco de dados.
 
 O @Embedded foi usado para incorporar um tipo em outra entidade.

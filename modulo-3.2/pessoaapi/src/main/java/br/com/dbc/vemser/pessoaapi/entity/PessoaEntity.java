@@ -33,6 +33,9 @@ public class PessoaEntity {
     @Column(name = "cpf")
     private String cpf;
 
+    @Embedded
+    private SexoEntity sexo;
+
     @OneToOne(fetch = FetchType.LAZY,mappedBy = "pessoa",cascade = CascadeType.ALL,orphanRemoval = true)
     private PetEntity pet;
 
