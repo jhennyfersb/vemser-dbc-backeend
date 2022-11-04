@@ -103,10 +103,10 @@ public class FilmeController {
             }
     )
     @PostMapping("/avaliacao/{idPessoa}")
-    public ResponseEntity<Pessoa_X_FilmeDTO> avaliarFilme(@PathVariable("idPessoa") Integer idPessoa,
-                                                       @Valid @RequestBody Pessoa_X_FilmeCreateDTO pessoa_x_filmeCreateDTO) throws RegraDeNegocioException {
+    public ResponseEntity<pessoaFilmeDTO> avaliarFilme(@PathVariable("idPessoa") Integer idPessoa,
+                                                       @Valid @RequestBody PessoaFilmeCreateDTO pessoa__filmeCreateDTO) throws RegraDeNegocioException {
         log.info("criando avaliaçao...");
-        Pessoa_X_FilmeDTO pessoa_x_filmeDTO = filmeService.avaliarFilme(idPessoa,pessoa_x_filmeCreateDTO);
+        pessoaFilmeDTO pessoa_x_filmeDTO = filmeService.avaliarFilme(idPessoa, pessoa__filmeCreateDTO);
         log.info("avaliacao criada!");
         return new ResponseEntity<>(pessoa_x_filmeDTO, HttpStatus.OK);
     }

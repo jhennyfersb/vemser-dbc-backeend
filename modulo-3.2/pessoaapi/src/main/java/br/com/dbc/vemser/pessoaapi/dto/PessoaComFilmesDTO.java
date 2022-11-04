@@ -13,5 +13,5 @@ import java.util.List;
 @NoArgsConstructor
 public class PessoaComFilmesDTO extends PessoaCreateDTO{
     private Integer idPessoa;
-    private List<Pessoa_X_FilmeDTO> listPessoa_x_filmeDTO;
+    private List<pessoaFilmeDTO> listPessoa_x_filmeDTO;
 }

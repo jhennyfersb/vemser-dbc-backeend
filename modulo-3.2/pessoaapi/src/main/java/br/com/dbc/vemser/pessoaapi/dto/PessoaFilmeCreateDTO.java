@@ -3,6 +3,7 @@ package br.com.dbc.vemser.pessoaapi.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
+import javax.persistence.Table;
 import java.time.LocalDate;
 
 @ToString
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Pessoa_X_FilmeCreateDTO {
+public class PessoaFilmeCreateDTO {
     @Schema(description = "id do filme")
     private Integer idFilme;
 

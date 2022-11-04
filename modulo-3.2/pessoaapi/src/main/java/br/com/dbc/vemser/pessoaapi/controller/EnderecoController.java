@@ -2,8 +2,9 @@ package br.com.dbc.vemser.pessoaapi.controller;
 
 import br.com.dbc.vemser.pessoaapi.dto.EnderecoCreateDTO;
 import br.com.dbc.vemser.pessoaapi.dto.EnderecoDTO;
-import br.com.dbc.vemser.pessoaapi.dto.PessoaCreateDTO;
+import br.com.dbc.vemser.pessoaapi.entity.EnderecoEntity;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
+import br.com.dbc.vemser.pessoaapi.repository.EnderecoRepository;
 import br.com.dbc.vemser.pessoaapi.service.EnderecoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -25,8 +26,11 @@ public class EnderecoController {
 
     private final EnderecoService enderecoService;
 
-    public EnderecoController(EnderecoService enderecoService) {
+    private final EnderecoRepository enderecoRepository;
+
+    public EnderecoController(EnderecoService enderecoService, EnderecoRepository enderecoRepository) {
         this.enderecoService = enderecoService;
+        this.enderecoRepository = enderecoRepository;
     }
 
     @Operation(summary = "listar enderecos", description = "Lista todas os enderecos do banco")
@@ -52,7 +56,7 @@ public class EnderecoController {
     )
 
     @GetMapping("/{idEndereco}")
-    public List<EnderecoDTO> listByEndereco(@PathVariable("idEndereco") Integer id) {
+    public List<EnderecoDTO> listByEndereco(@PathVariable("idEndereco") Integer id) throws RegraDeNegocioException {
         return enderecoService.listByEndereco(id);
     }
 
@@ -66,7 +70,7 @@ public class EnderecoController {
     )
 
     @GetMapping("/{idPessoa}/pessoa")
-    public List<EnderecoDTO> listPessoaId(@PathVariable("idPessoa") Integer id) {
+    public List<EnderecoDTO> listPessoaId(@PathVariable("idPessoa") Integer id) throws RegraDeNegocioException {
         return enderecoService.listByEndereco(id);
     }
 
@@ -78,10 +82,11 @@ public class EnderecoController {
                     @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
             }
     )
-    @PostMapping
-    public ResponseEntity<EnderecoDTO> create(@Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException {
+    @PostMapping("/{idPessoa}")
+    public ResponseEntity<EnderecoDTO> create(@PathVariable("idPessoa") Integer idPessoa,
+                                              @Valid @RequestBody EnderecoCreateDTO endereco) throws RegraDeNegocioException {
         log.info("criando endereço..");
-        EnderecoDTO enderecoDTO = enderecoService.create(endereco);
+        EnderecoDTO enderecoDTO = enderecoService.create(idPessoa,endereco);
         log.info("endereço criado ...");
         return new ResponseEntity<>(enderecoDTO, HttpStatus.OK);
     }
@@ -117,4 +122,11 @@ public class EnderecoController {
         enderecoService.delete(id);
         log.info("Endereço deletado");
     }
+/*
+    @GetMapping("/por-pais")
+    public List<EnderecoEntity> retornaEnderecoPosPais(String nome) {
+        return enderecoRepository.retornaEnderecoPosPais(nome);
+    }
+    */
+
 }

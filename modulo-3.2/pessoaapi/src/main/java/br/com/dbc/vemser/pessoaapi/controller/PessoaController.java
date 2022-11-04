@@ -1,9 +1,9 @@
 package br.com.dbc.vemser.pessoaapi.controller;
 
 import br.com.dbc.vemser.pessoaapi.dto.*;
+import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
-import br.com.dbc.vemser.pessoaapi.service.ContatoService;
-import br.com.dbc.vemser.pessoaapi.service.EnderecoService;
+import br.com.dbc.vemser.pessoaapi.repository.PessoaRepository;
 import br.com.dbc.vemser.pessoaapi.service.PessoaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -27,6 +27,8 @@ import java.util.List;
 public class PessoaController {
 
     private final PessoaService pessoaService;
+
+    private final PessoaRepository pessoaRepository;
 
 
     @Value("${user}")
@@ -57,7 +59,7 @@ public class PessoaController {
             }
     )
     @GetMapping("/listar-com-endereco")
-    public List<PessoaComEnderecoDTO> listComEndereco(@RequestParam(required = false) Integer idPessoa) {
+    public List<PessoaComEnderecoDTO> listComEndereco(@RequestParam(required = false, name = "idPessoa") Integer idPessoa) {
         if (idPessoa != null) {
             return List.of(pessoaService.getPessoasComEnderecosPorId(idPessoa));
         } else {
@@ -74,13 +76,14 @@ public class PessoaController {
             }
     )
     @GetMapping("/listar-com-contatos")
-    public List<PessoaComContatoDTO> listComContatos(@RequestParam(required = false) Integer idPessoa) {
+    public List<PessoaComContatoDTO> listComContatos(@RequestParam(required = false, name = "idPessoa") Integer idPessoa) {
         if (idPessoa != null) {
             return List.of(pessoaService.getPessoaComContatosPorId(idPessoa));
         } else {
             return pessoaService.listPessoasComContatos();
         }
     }
+
     @Operation(summary = "listar filmes assistidos de pessoas pelo id", description = "Lista todas as pessoas do banco")
     @ApiResponses(
             value = {
@@ -90,7 +93,7 @@ public class PessoaController {
             }
     )
     @GetMapping("/listar-com-filmes-assistidos")
-    public List<PessoaComFilmeAssistidoDTO> listComFilmesAssistidos(@RequestParam(required = false) Integer idPessoa) {
+    public List<PessoaComFilmeAssistidoDTO> listComFilmesAssistidos(@RequestParam(required = false, name = "idPessoa") Integer idPessoa) {
         if (idPessoa != null) {
             return List.of(pessoaService.getPessoasComFilmesAssistidosPorId(idPessoa));
         } else {
@@ -99,7 +102,7 @@ public class PessoaController {
     }
 
     @GetMapping("/{idPessoa}")
-    public PessoaDTO findById(@PathVariable Integer idPessoa) throws RegraDeNegocioException {
+    public PessoaDTO findById(@PathVariable Integer idPessoa) {
         return pessoaService.getPorId(idPessoa);
     }
 
@@ -150,6 +153,11 @@ public class PessoaController {
         pessoaService.delete(id);
         log.info("pessoa deletada");
 
+    }
+
+    @GetMapping("/por-endereco")
+    public List<PessoaEntity> recuperarPessoasQueTemEnderecos(String nome) {
+        return pessoaRepository.recuperarPessoasQueTemEnderecos(nome);
     }
 
 }

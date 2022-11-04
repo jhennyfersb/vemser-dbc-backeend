@@ -14,10 +14,6 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class FilmeCreateDTO {
 
-    //@NotNull
-    //@Schema(description = "Id da Pessoa :")
-    //private Integer idPessoa;
-
     @NotEmpty
     @NotNull
     @Schema(description = "descrição :")
@@ -26,7 +22,6 @@ public class FilmeCreateDTO {
     @NotNull
     @Schema(description = "Nota :")
     private Integer nota;
-
 
     @NotNull
     @Schema(description = "Tipo de Filme:")

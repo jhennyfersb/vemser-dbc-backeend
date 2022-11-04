@@ -3,11 +3,11 @@ package br.com.dbc.vemser.pessoaapi.service;
 import br.com.dbc.vemser.pessoaapi.dto.*;
 import br.com.dbc.vemser.pessoaapi.entity.FilmeEntity;
 import br.com.dbc.vemser.pessoaapi.entity.PessoaEntity;
-import br.com.dbc.vemser.pessoaapi.entity.fk.PessoaFilmeId;
+import br.com.dbc.vemser.pessoaapi.entity.pk.PessoaFilmeId;
 import br.com.dbc.vemser.pessoaapi.entity.PessoaFilmeEntity;
 import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.FilmeRepository;
-import br.com.dbc.vemser.pessoaapi.repository.Pessoa_X_FilmeRepository;
+import br.com.dbc.vemser.pessoaapi.repository.PessoaXFilmeRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class FilmeService {
     private final PessoaService pessoaService;
 
     private final FilmeRepository filmeRepository;
-    private final Pessoa_X_FilmeRepository pessoa_x_filmeRepository;
+    private final PessoaXFilmeRepository pessoaXfilmeRepository;
 
     private final ObjectMapper objectMapper;
 
@@ -32,6 +32,7 @@ public class FilmeService {
                 .map(filmeEntity -> objectMapper.convertValue(filmeEntity, FilmeDTO.class))
                 .collect(Collectors.toList());
     }
+
     public List<FilmeDTO> listByFilme(Integer id) throws RegraDeNegocioException {
 
         return Collections.singletonList(objectMapper.convertValue(findByIdFilme(id), FilmeDTO.class));
@@ -50,7 +51,7 @@ public class FilmeService {
         return objectMapper.convertValue(filmeEntity1, FilmeDTO.class);
     }
 
-    public FilmeDTO update(Integer id,FilmeCreateDTO filmeAtualizar)throws RegraDeNegocioException{
+    public FilmeDTO update(Integer id, FilmeCreateDTO filmeAtualizar) throws RegraDeNegocioException {
         FilmeEntity filmeEntityRecuperado = findByIdFilme(id);
 
         filmeEntityRecuperado.setDescricao(filmeAtualizar.getDescricao());
@@ -61,22 +62,24 @@ public class FilmeService {
 
         return objectMapper.convertValue(filmeEntityRecuperado, FilmeDTO.class);
     }
+
     public void delete(Integer id) throws RegraDeNegocioException {
         FilmeEntity filmeEntity1deletado = findByIdFilme(id);
-        pessoa_x_filmeRepository.deleteAll(filmeEntity1deletado.getPessoaXFilmes());
+        pessoaXfilmeRepository.deleteAll(filmeEntity1deletado.getPessoaXFilmes());
         filmeRepository.delete(filmeEntity1deletado);
     }
 
-    public Pessoa_X_FilmeDTO avaliarFilme(Integer idPessoa,Pessoa_X_FilmeCreateDTO pessoa_x_filmeCreateDTO) throws RegraDeNegocioException {
-       PessoaEntity pessoa = pessoaService.findByIdPessoa(idPessoa);
-       FilmeEntity filme = findByIdFilme(pessoa_x_filmeCreateDTO.getIdFilme());
+    public pessoaFilmeDTO avaliarFilme(Integer idPessoa, PessoaFilmeCreateDTO pessoaXfilmeCreateDTO) throws RegraDeNegocioException {
+        PessoaEntity pessoa = pessoaService.findByIdPessoa(idPessoa);
+        FilmeEntity filme = findByIdFilme(pessoaXfilmeCreateDTO.getIdFilme());
 
-        PessoaFilmeEntity pessoa__filme1 = new PessoaFilmeEntity(new PessoaFilmeId(filme.getIdFilme(), pessoa.getIdPessoa()),
-                pessoa_x_filmeCreateDTO.getDateAssistido(),
-                pessoa_x_filmeCreateDTO.getDescricao(),
-                pessoa_x_filmeCreateDTO.getNota());
-        PessoaFilmeEntity pessoa__filmeCriado = pessoa_x_filmeRepository.save(pessoa__filme1);
-       return objectMapper.convertValue(pessoa__filmeCriado, Pessoa_X_FilmeDTO.class);
+        PessoaFilmeEntity pessoaXfilme1 = new PessoaFilmeEntity(new PessoaFilmeId(filme.getIdFilme(), pessoa.getIdPessoa()),
+                pessoaXfilmeCreateDTO.getDateAssistido(),
+                pessoaXfilmeCreateDTO.getDescricao(),
+                pessoaXfilmeCreateDTO.getNota());
+        PessoaFilmeEntity pessoaXfilmeCriado = pessoaXfilmeRepository.save(pessoaXfilme1);
+
+        return objectMapper.convertValue(pessoaXfilmeCriado, pessoaFilmeDTO.class);
     }
 
 

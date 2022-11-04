@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface Pessoa_X_FilmeRepository extends JpaRepository<PessoaFilmeEntity,Integer> {
+public interface PessoaXFilmeRepository extends JpaRepository<PessoaFilmeEntity,Integer> {
 
 }

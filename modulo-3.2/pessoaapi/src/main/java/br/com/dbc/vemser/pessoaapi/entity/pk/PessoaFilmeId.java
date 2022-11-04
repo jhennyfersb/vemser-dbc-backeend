@@ -1,4 +1,4 @@
-package br.com.dbc.vemser.pessoaapi.entity.fk;
+package br.com.dbc.vemser.pessoaapi.entity.pk;
 
 import lombok.*;
 

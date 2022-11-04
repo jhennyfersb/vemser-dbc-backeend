@@ -1,6 +1,6 @@
 package br.com.dbc.vemser.pessoaapi.entity;
 
-import br.com.dbc.vemser.pessoaapi.entity.fk.PessoaFilmeId;
+import br.com.dbc.vemser.pessoaapi.entity.pk.PessoaFilmeId;
 import lombok.*;
 
 import javax.persistence.Column;

@@ -15,5 +15,5 @@ public class PessoaDTO extends PessoaCreateDTO{
     private Integer idPessoa;
     private List<EnderecoDTO> enderecos;
     private List<ContatoDTO> contatos;
-    private List<Pessoa_X_FilmeDTO> listPessoa_x_filmeDTO;
+    private List<pessoaFilmeDTO> listPessoa_x_filmeDTO;
 }
