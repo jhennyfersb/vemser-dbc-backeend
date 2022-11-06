@@ -26,4 +26,5 @@ public class FilmeCreateDTO {
     @NotNull
     @Schema(description = "Tipo de Filme:")
     private TipoFilme tipoFilme;
+
 }

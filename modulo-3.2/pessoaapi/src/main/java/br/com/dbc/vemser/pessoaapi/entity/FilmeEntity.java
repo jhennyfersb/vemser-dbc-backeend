@@ -13,8 +13,8 @@ import java.util.Set;
 @Entity(name = "Filme")
 public class FilmeEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "SEQ_FILME")
-    @SequenceGenerator(name = "SEQ_FILME",sequenceName = "seq_filme",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_FILME")
+    @SequenceGenerator(name = "SEQ_FILME", sequenceName = "seq_filme", allocationSize = 1)
     @Column(name = "id_filme")
     private Integer idFilme;
 
@@ -29,8 +29,8 @@ public class FilmeEntity {
     private TipoFilme tipoFilme;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true )
-    @JoinColumn(name = "ID_FILME",referencedColumnName = "ID_FILME")
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "filmeEntity")
+    //@JoinColumn(name = "ID_FILME", referencedColumnName = "ID_FILME")
     private Set<PessoaFilmeEntity> pessoaXFilmes;
 
     public FilmeEntity() {

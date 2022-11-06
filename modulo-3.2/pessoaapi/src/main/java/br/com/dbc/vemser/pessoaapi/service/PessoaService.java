@@ -6,6 +6,7 @@ import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.PessoaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -89,9 +90,12 @@ public class PessoaService {
 
     private PessoaComFilmeAssistidoDTO getPessoaComFilmeAssistidoDTO(PessoaEntity pessoaEntity) {
         List<pessoaFilmeDTO> pessoaComFilmesDTOS = getFilmeDTOPorPessoa(pessoaEntity.getIdPessoa(), pessoaEntity);
-        PessoaComFilmeAssistidoDTO pessoaComFilmesDTO = objectMapper.convertValue(pessoaComFilmesDTOS,PessoaComFilmeAssistidoDTO.class);
-        pessoaComFilmesDTO.setPessoaFilmes(pessoaComFilmesDTOS);
-        return pessoaComFilmesDTO;
+        return new PessoaComFilmeAssistidoDTO(pessoaEntity.getNome(),
+                pessoaEntity.getDataNascimento(),
+                pessoaEntity.getEmail(),
+                pessoaEntity.getCpf(),
+                pessoaEntity.getIdPessoa(),
+                pessoaComFilmesDTOS);
     }
 
     public List<PessoaComFilmeAssistidoDTO> listPessoasComFilmesAssistidos(){
@@ -159,5 +163,8 @@ public class PessoaService {
         //emailService.sendEmail(pessoaEntityRecuperada,
                // "email-template-delete.ftl",
                // pessoaEntityRecuperada.getEmail());
+    }
+    public List<PessoaCompletaDTO> findAllPessoa(Integer idPessoa){
+        return pessoaRepository.findAllPessoa(idPessoa);
     }
 }

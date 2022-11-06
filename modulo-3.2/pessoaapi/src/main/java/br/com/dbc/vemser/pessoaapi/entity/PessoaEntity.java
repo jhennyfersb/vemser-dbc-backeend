@@ -33,22 +33,22 @@ public class PessoaEntity {
     @Column(name = "cpf")
     private String cpf;
 
-
-    @OneToOne(fetch = FetchType.LAZY,mappedBy = "pessoa",cascade = CascadeType.ALL,orphanRemoval = true)
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
     private PetEntity pet;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "pessoa",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ContatoEntity> contatos;
 
 
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "pessoas")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "pessoas")
     private Set<EnderecoEntity> enderecos;
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true )
-    @JoinColumn(name = "ID_PESSOA",referencedColumnName = "ID_PESSOA")
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "pessoaEntity")
+    //@JoinColumn(name = "ID_PESSOA", referencedColumnName = "ID_PESSOA")
     private Set<PessoaFilmeEntity> pessoaXFilmes;
 
 

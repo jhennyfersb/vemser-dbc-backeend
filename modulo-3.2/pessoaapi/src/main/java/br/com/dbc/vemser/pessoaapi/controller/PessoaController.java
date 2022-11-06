@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -36,6 +37,18 @@ public class PessoaController {
 
     @Value("${spring.aplication.name}")
     private String app;
+    @Operation(summary = "listar pessoas pelo relatorio ", description = "Lista todas as pessoas do banco")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(responseCode = "200", description = "Retorna a lista de pessoas"),
+                    @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
+                    @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
+            }
+    )
+    @GetMapping("relatorio")
+    public List<PessoaCompletaDTO>findAllPessoa(@RequestParam(required = false , name = "idPessoa")Integer idPessoa) {
+        return pessoaService.findAllPessoa(idPessoa);
+    }
 
     @Operation(summary = "listar pessoas", description = "Lista todas as pessoas do banco")
     @ApiResponses(
@@ -50,10 +63,10 @@ public class PessoaController {
         return pessoaService.list();
     }
 
-    @Operation(summary = "listar contatos de pessoas pelo id", description = "Lista todas as pessoas do banco")
+    @Operation(summary = "listar enderecos de pessoas pelo id", description = "Lista todas as pessoas do banco")
     @ApiResponses(
             value = {
-                    @ApiResponse(responseCode = "200", description = "Retorna a lista de pessoas e lista de contatos de pessoas"),
+                    @ApiResponse(responseCode = "200", description = "Retorna a lista de pessoas e lista de enderecos de pessoas"),
                     @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar este recurso"),
                     @ApiResponse(responseCode = "500", description = "Foi gerada uma exceção")
             }

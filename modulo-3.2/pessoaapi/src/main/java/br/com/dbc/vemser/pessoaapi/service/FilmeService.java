@@ -76,10 +76,19 @@ public class FilmeService {
         PessoaFilmeEntity pessoaXfilme1 = new PessoaFilmeEntity(new PessoaFilmeId(filme.getIdFilme(), pessoa.getIdPessoa()),
                 pessoaXfilmeCreateDTO.getDateAssistido(),
                 pessoaXfilmeCreateDTO.getDescricao(),
-                pessoaXfilmeCreateDTO.getNota());
+                pessoaXfilmeCreateDTO.getNota(),filme,pessoa);
         PessoaFilmeEntity pessoaXfilmeCriado = pessoaXfilmeRepository.save(pessoaXfilme1);
 
-        return objectMapper.convertValue(pessoaXfilmeCriado, pessoaFilmeDTO.class);
+        return converterPessoaFilmeDTO(pessoaXfilmeCriado);
+    }
+
+
+    public pessoaFilmeDTO converterPessoaFilmeDTO(PessoaFilmeEntity pessoaXfilmeCriado) {
+        return new pessoaFilmeDTO(pessoaXfilmeCriado.getPessoaFilmeId().getIdFilme(),
+                pessoaXfilmeCriado.getPessoaFilmeId().getIdPessoa(),
+                pessoaXfilmeCriado.getDateAssistido(),
+                pessoaXfilmeCriado.getDescricao(),
+                pessoaXfilmeCriado.getNota());
     }
 
 
