@@ -13,7 +13,7 @@ public class Main {
 
         System.out.print(betWeen.getYears() + " anos ");
         System.out.print(betWeen.getMonths() + " meses ");
-        System.out.print(betWeen.getDays() + " dias ");
+        System.out.println(betWeen.getDays() + " dias ");
 
 
         Duration duration = Duration.between(zonedDateTime,diaDoShow);
