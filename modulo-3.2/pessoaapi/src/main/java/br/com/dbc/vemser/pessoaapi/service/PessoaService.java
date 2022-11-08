@@ -6,7 +6,6 @@ import br.com.dbc.vemser.pessoaapi.exception.RegraDeNegocioException;
 import br.com.dbc.vemser.pessoaapi.repository.PessoaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +22,7 @@ public class PessoaService {
         return pessoaRepository.findById(id)
                 .orElseThrow(() -> new RegraDeNegocioException("Pessoa não encontrada"));
     }
+
     private PessoaComContatoDTO getPessoaComContatoDTO(PessoaEntity pessoa) {
         List<ContatoDTO> contatoDTOS = getContatosDTOPorPessoa(pessoa);
         PessoaComContatoDTO pessoaComContatoDTO = objectMapper.convertValue(pessoa, PessoaComContatoDTO.class);
@@ -59,12 +59,12 @@ public class PessoaService {
 
     private PessoaComEnderecoDTO getPessoaComEnderecoDTO(PessoaEntity pessoaEntity) {
         List<EnderecoDTO> enderecoDTOS = getEnderecosDTOPorPessoa(pessoaEntity);
-        PessoaComEnderecoDTO pessoaEnderecoDTO = objectMapper.convertValue(pessoaEntity,PessoaComEnderecoDTO.class);
+        PessoaComEnderecoDTO pessoaEnderecoDTO = objectMapper.convertValue(pessoaEntity, PessoaComEnderecoDTO.class);
         pessoaEnderecoDTO.setEnderecos(enderecoDTOS);
         return pessoaEnderecoDTO;
     }
 
-    public List<PessoaComEnderecoDTO> listPessoasComEnderecos(){
+    public List<PessoaComEnderecoDTO> listPessoasComEnderecos() {
         return pessoaRepository.findAll()
                 .stream()
                 .map(this::getPessoaComEnderecoDTO)
@@ -82,7 +82,7 @@ public class PessoaService {
                 .toList();
     }
 
-    public PessoaComEnderecoDTO getPessoasComEnderecosPorId(Integer idPessoa){
+    public PessoaComEnderecoDTO getPessoasComEnderecosPorId(Integer idPessoa) {
         PessoaEntity pessoaEntity = pessoaRepository.findById(idPessoa).get();
         return getPessoaComEnderecoDTO(pessoaEntity);
     }
@@ -98,7 +98,7 @@ public class PessoaService {
                 pessoaComFilmesDTOS);
     }
 
-    public List<PessoaComFilmeAssistidoDTO> listPessoasComFilmesAssistidos(){
+    public List<PessoaComFilmeAssistidoDTO> listPessoasComFilmesAssistidos() {
         return pessoaRepository.findAll()
                 .stream()
                 .map(this::getPessoaComFilmeAssistidoDTO)
@@ -106,10 +106,11 @@ public class PessoaService {
     }
 
 
-    public PessoaComFilmeAssistidoDTO getPessoasComFilmesAssistidosPorId(Integer idPessoa){
+    public PessoaComFilmeAssistidoDTO getPessoasComFilmesAssistidosPorId(Integer idPessoa) {
         PessoaEntity pessoaEntity = pessoaRepository.findById(idPessoa).get();
         List<pessoaFilmeDTO> filmeDTOS = getFilmeDTOPorPessoa(idPessoa, pessoaEntity);
-        PessoaComFilmeAssistidoDTO pessoaComFilmesDTO = objectMapper.convertValue(pessoaEntity,PessoaComFilmeAssistidoDTO.class);
+        PessoaComFilmeAssistidoDTO pessoaComFilmesDTO = objectMapper.convertValue(pessoaEntity,
+                PessoaComFilmeAssistidoDTO.class);
         pessoaComFilmesDTO.setPessoaFilmes(filmeDTOS);
         return pessoaComFilmesDTO;
     }
@@ -136,11 +137,11 @@ public class PessoaService {
         PessoaEntity pessoaEntity = objectMapper.convertValue(pessoa, PessoaEntity.class);
         PessoaEntity pessoaEntity1 = pessoaRepository.save(pessoaEntity);
         //Map<String, Object> dados = new HashMap<>();
-       // dados.put("nome", pessoaEntity1.getNome());
+        // dados.put("nome", pessoaEntity1.getNome());
         //dados.put("id", pessoaEntity1.getIdPessoa());
         //emailService.sendEmail(pessoaEntity1,
-               // "email-template.ftl",
-                //pessoaEntity1.getEmail());
+        // "email-template.ftl",
+        //pessoaEntity1.getEmail());
         return objectMapper.convertValue(pessoaEntity1, PessoaDTO.class);
     }
 
@@ -151,9 +152,9 @@ public class PessoaService {
         pessoaEntityRecuperada.setNome(pessoaAtualizarDTO.getNome());
         pessoaEntityRecuperada.setDataNascimento(pessoaAtualizarDTO.getDataNascimento());
         pessoaRepository.save(pessoaEntityRecuperada);
-       // emailService.sendEmail(pessoaEntityRecuperada,
-                //"email-template-update.ftl",
-               // pessoaEntityRecuperada.getEmail());
+        // emailService.sendEmail(pessoaEntityRecuperada,
+        //"email-template-update.ftl",
+        // pessoaEntityRecuperada.getEmail());
         return objectMapper.convertValue(pessoaEntityRecuperada, PessoaDTO.class);
     }
 
@@ -161,10 +162,11 @@ public class PessoaService {
         PessoaEntity pessoaEntityRecuperada = findByIdPessoa(id);
         pessoaRepository.deleteById(pessoaEntityRecuperada.getIdPessoa());
         //emailService.sendEmail(pessoaEntityRecuperada,
-               // "email-template-delete.ftl",
-               // pessoaEntityRecuperada.getEmail());
+        // "email-template-delete.ftl",
+        // pessoaEntityRecuperada.getEmail());
     }
-    public List<PessoaCompletaDTO> findAllPessoa(Integer idPessoa){
+
+    public List<PessoaCompletaDTO> findAllPessoa(Integer idPessoa) {
         return pessoaRepository.findAllPessoa(idPessoa);
     }
 }
