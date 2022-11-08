@@ -1,7 +1,6 @@
 package exe2;
 
-import java.time.LocalDate;
-import java.time.Period;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
@@ -18,7 +17,7 @@ public class Main {
 
         Period between = Period.between(dataInicial, dataFinal);
 
-        System.out.println("Duração : " +between.getYears() +
+        System.out.println("Duração : " + between.getYears() +
                 " anos " + "e " + between.getMonths() +
                 " meses " + between.getDays() + " dias");
     }
