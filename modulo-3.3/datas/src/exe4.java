@@ -13,7 +13,6 @@ public class exe4 {
         System.out.print(betWeen.getMonths() + " meses ");
         System.out.println(betWeen.getDays() + " dias ");
 
-
         Duration duration = Duration.between(zonedDateTime,diaDoShow);
         long horas = duration.toHours() % 24;
         long minutos = duration.toMinutes() % 60;
