@@ -1,8 +1,6 @@
-package exe4;
-
 import java.time.*;
 
-public class Main {
+public class exe4 {
     public static void main(String[] args) {
         ZoneId zoneId = ZoneId.of("Europe/London");
         ZonedDateTime zonedDateTime = ZonedDateTime.of(LocalDateTime.now(), zoneId);

@@ -1,11 +1,11 @@
-package exe2;
-
-import java.time.*;
+import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class Main {
+public class exe2 {
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
         System.out.println("digite uma data inicial ");
         String inicialDate = sc.next();
