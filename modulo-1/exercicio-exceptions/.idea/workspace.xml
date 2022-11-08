@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="78324215-8b05-4cdc-ae3c-a9c50fea796b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../.idea/vemser-dbc-backend.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/exercicio-exceptions.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../homework01/homework01.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../homework02/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../homework02/homework02.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../homework03/homework03.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../homework03/src/ContaTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lista1/lista1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lista2/exercicio-stream.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../exercicio-stream/src/ExemploStream.java" beforeDir="false" afterPath="$PROJECT_DIR$/../exercicio-stream/src/ExemploStream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../exercicio-stream/src/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/../exercicio-stream/src/Pessoa1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../exercicio-stream/src/Stream.java" beforeDir="false" afterPath="$PROJECT_DIR$/../exercicio-stream/src/Stream.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../homework03/src/Conta.java" beforeDir="false" afterPath="$PROJECT_DIR$/../homework03/src/Conta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../homework03/src/ContaCorrente.java" beforeDir="false" afterPath="$PROJECT_DIR$/../homework03/src/ContaCorrente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../homework03/src/ContaPagamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/../homework03/src/ContaPagamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../homework03/src/Contapoupanca.java" beforeDir="false" afterPath="$PROJECT_DIR$/../homework03/src/Contapoupanca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lista1/modulo1-lista1/modulo1-lista1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/exercicio-exceptions.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lista2/lista2/lista2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../exercicio-stream/exercicio-stream.iml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2FogF8rfbs8RKZb37VQNX7H0CZK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="78324215-8b05-4cdc-ae3c-a9c50fea796b" name="Changes" comment="" />
+      <created>1665163752472</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1665163752472</updated>
+      <workItem from="1665163755159" duration="6000" />
+      <workItem from="1665348303177" duration="19000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
