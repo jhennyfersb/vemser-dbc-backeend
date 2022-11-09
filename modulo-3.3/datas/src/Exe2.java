@@ -3,7 +3,7 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class exe2 {
+public class Exe2 {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);

@@ -1,6 +1,6 @@
 import java.time.LocalDateTime;
 
-public class exe3 {
+public class Exe3 {
     public static void main(String[] args) {
         LocalDateTime localDateTime = LocalDateTime.now();
         localDateTime = localDateTime.plusDays(15);
