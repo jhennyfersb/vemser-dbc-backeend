@@ -1,7 +1,8 @@
 package br.com.dbc.vemser.pessoaapi.service;
 
 import br.com.dbc.vemser.pessoaapi.dto.LoginDTO;
-import br.com.dbc.vemser.pessoaapi.dto.UsuarioCreate;
+import br.com.dbc.vemser.pessoaapi.dto.UsuarioCreateDTO;
+import br.com.dbc.vemser.pessoaapi.dto.UsuarioDTO;
 import br.com.dbc.vemser.pessoaapi.entity.UsuarioEntity;
 import br.com.dbc.vemser.pessoaapi.repository.UsuarioRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,12 +31,12 @@ public class UsuarioService {
         return usuarioRepository.findByLogin(login);
     }
 
-    public LoginDTO create(UsuarioCreate usuarioCreate) {
-        UsuarioEntity usuarioEntity = objectMapper.convertValue(usuarioCreate,UsuarioEntity.class);
+    public UsuarioDTO create(UsuarioCreateDTO usuarioCreateDTO) {
+        UsuarioEntity usuarioEntity = objectMapper.convertValue(usuarioCreateDTO,UsuarioEntity.class);
         String encode = encoder.encode(usuarioEntity.getPassword());
         usuarioEntity.setSenha(encode);
         UsuarioEntity usuario = usuarioRepository.save(usuarioEntity);
-        return objectMapper.convertValue(usuario,LoginDTO.class);
+        return objectMapper.convertValue(usuario,UsuarioDTO.class);
 
     }
 }

@@ -12,12 +12,12 @@ import javax.validation.constraints.NotNull;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UsuarioCreate {
+public class UsuarioCreateDTO {
     @NotNull
     @Schema(description = "usuario",example = "jhennyfers")
     private String login;
 
     @NotNull
-    @Schema(description = "senha",example = "2345@34")
+    @Schema(description = "senha",example = "sqwert")
     private String senha;
 }
