@@ -25,11 +25,8 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
             throws ServletException, IOException {
         String headerAuthorization = request.getHeader("Authorization");
-
-        UsernamePasswordAuthenticationToken dtoDoSpring = tokenService.isValid(headerAuthorization);
-
-        SecurityContextHolder.getContext().setAuthentication(dtoDoSpring);
-
+        UsernamePasswordAuthenticationToken user = tokenService.isValid(headerAuthorization);
+        SecurityContextHolder.getContext().setAuthentication(user);
         filterChain.doFilter(request, response);
     }
 }

@@ -15,8 +15,9 @@ import java.util.Optional;
 public class AuthenticationService implements UserDetailsService {
     private final UsuarioService usuarioService;
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UsuarioEntity> optionalUsuario = usuarioService.findByLogin(username);
+    public UserDetails loadUserByUsername(String loginUsuario) throws UsernameNotFoundException {
+        // FIXME buscar usuário pelo login
+        Optional<UsuarioEntity> optionalUsuario = usuarioService.findByLogin(loginUsuario);
         return optionalUsuario
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário inválido"));
     }

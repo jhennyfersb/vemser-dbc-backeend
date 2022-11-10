@@ -31,12 +31,18 @@ public class AuthController {
 
     @PostMapping
     public String auth(@RequestBody @Valid LoginDTO logintDTO)  {
+        //FIXME criar objeto UsernamePasswordAuthenticationToken com o usuário e senha
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                 new UsernamePasswordAuthenticationToken(logintDTO.getLogin(), logintDTO.getSenha());
 
+        //FIXME utilizar AuthenticationManager para se autenticar
         Authentication authenticate = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+
+        //FIXME recuperar usuário após da autenticação (getPrincipal())
         Object principal = authenticate.getPrincipal();
         UsuarioEntity usuarioEntity = (UsuarioEntity) principal;
+
+        //FIXME GERAR TOKEN (usuarioEntity da autenticação)
         String token = tokenService.getToken(usuarioEntity);
         return token;
     }
