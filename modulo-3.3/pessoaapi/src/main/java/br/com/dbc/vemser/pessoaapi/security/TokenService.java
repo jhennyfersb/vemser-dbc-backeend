@@ -1,7 +1,6 @@
 package br.com.dbc.vemser.pessoaapi.security;
 
 import br.com.dbc.vemser.pessoaapi.entity.UsuarioEntity;
-import br.com.dbc.vemser.pessoaapi.service.UsuarioService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -10,14 +9,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Base64;
 import java.util.Collections;
 import java.util.Date;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +22,6 @@ public class TokenService {
     @Value("${jwt.expiration}")
     private String expiration;
 
-
     public String getToken(UsuarioEntity usuarioEntity) {
 
         LocalDateTime dateAtualLocaldate = LocalDateTime.now();
@@ -36,7 +30,7 @@ public class TokenService {
         LocalDateTime dateExpiracaoLocalDate = dateAtualLocaldate.plusDays(Long.parseLong(expiration));
         Date dateExpiracao = Date.from(dateExpiracaoLocalDate.atZone(ZoneId.systemDefault()).toInstant());
 
-        // FIXME gerar token jwt
+        // gerar token jwt
         String token = Jwts.builder()
                 .setIssuer("vemser-api")
                 .claim(Claims.ID, usuarioEntity.getIdUsuario().toString())
@@ -52,7 +46,7 @@ public class TokenService {
         if (token == null) {
             return null;
         }
-        // FIXME verificar se o usuário é válido pelo token JWT e recuperar o usuário e retornar
+        // verificar se o usuário é válido pelo token JWT e recuperar o usuário e retornar
 
         token = token.replace("Bearer ", "");
 

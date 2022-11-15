@@ -28,7 +28,7 @@ public class SecurityConfiguration {
                 .cors().and()
                 .csrf().disable()
                 .authorizeHttpRequests((authz) ->
-                      authz.antMatchers("/auth/**","/auth").permitAll()
+                        authz.antMatchers("/auth/**", "/auth").permitAll()
                                 .anyRequest().authenticated());
 
         http.addFilterBefore(new TokenAuthenticationFilter(tokenService),
@@ -62,12 +62,14 @@ public class SecurityConfiguration {
             }
         };
     }
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
+
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
