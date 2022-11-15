@@ -1,0 +1,41 @@
+[{
+  "_id": {
+    "$oid": "6373b35da59c03ae34fb6ebe"
+  },
+  "nome": "Paulo santos",
+  "data_nascimento": {
+    "$date": {
+      "$numberLong": "712206000000"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6373b582a59c03ae34fb6ec1"
+  },
+  "nome": "Marcus Antunius",
+  "data_nascimento": {
+    "$date": {
+      "$numberLong": "817783200000"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6373b58fa59c03ae34fb6ec2"
+  },
+  "nome": "Cassia Sobrinho",
+  "data_nascimento": {
+    "$date": {
+      "$numberLong": "817783200000"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "6373b599a59c03ae34fb6ec3"
+  },
+  "nome": "Jhennyfer Sobrinho",
+  "data_nascimento": {
+    "$date": {
+      "$numberLong": "820893600000"
+    }
+  }
+}]
