@@ -94,7 +94,6 @@ public class Main {
                         match(Filters.empty()),
                         group("notas.nome", Accumulators.sum("qtd", 1))))
                 .forEach(doc -> System.out.println(doc.toJson()));
-
         System.out.println("-- Habilidades");
         alunos.aggregate(Arrays.asList(
                         match(Filters.empty()),
