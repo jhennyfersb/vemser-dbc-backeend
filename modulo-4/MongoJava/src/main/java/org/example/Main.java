@@ -7,7 +7,9 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Accumulators;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Projections;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,6 +18,7 @@ import java.util.List;
 
 import static com.mongodb.client.model.Aggregates.group;
 import static com.mongodb.client.model.Aggregates.match;
+import static com.mongodb.client.model.Projections.include;
 
 public class Main {
     public static void main(String[] args) {
@@ -112,6 +115,20 @@ public class Main {
         alunos.deleteOne(Filters.eq("nome","Gabriel"));
         alunos.deleteOne(Filters.eq("nome","Rafael"));
         alunos.deleteOne(Filters.eq("curso",new Document("nome", "Arquitetura")));
-        //alunos.deleteOne(Filters.eq("nome", "Gabriel"), ("habilidades","Fisica estatica");
+
+        System.out.println("-- Projection");
+        Bson filter = Filters.eq("curso",new Document("nome", "Fisica"));
+        Bson projection = Projections.fields(Projections.include("curso"),Projections.excludeId());
+        alunos.find(filter).projection(projection).forEach(document -> System.out.println(document));
+
+        System.out.println("-- Projection");
+        Bson filter1 = Filters.empty();
+        Bson projection1 = Projections.fields(Projections.include("nome"),Projections.excludeId());
+        alunos.find(filter1).projection(projection1).forEach(document -> System.out.println(document));
+
+        System.out.println("-- Projection");
+        Bson filter2 = Filters.empty();
+        Bson projection2 = Projections.fields(Projections.include("curso"),Projections.excludeId());
+        alunos.find(filter2).projection(projection2).forEach(document -> System.out.println(document));
     }
 }
