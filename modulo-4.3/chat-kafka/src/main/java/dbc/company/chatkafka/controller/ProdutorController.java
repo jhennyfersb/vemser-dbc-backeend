@@ -28,7 +28,7 @@ public class ProdutorController {
     )
     @PostMapping("/enviar-mensagem")
     public void enviarmensagem(@RequestParam List<NomeChat> chats,
-                               @RequestBody MensagemDTO mensagem) throws JsonProcessingException {
+                               @RequestParam String mensagem) throws JsonProcessingException {
         produtorService.enviarMensagem(mensagem,chats);
     }
 }

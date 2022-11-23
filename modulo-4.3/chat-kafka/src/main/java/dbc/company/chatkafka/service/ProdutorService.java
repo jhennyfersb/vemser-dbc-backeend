@@ -6,6 +6,7 @@ import dbc.company.chatkafka.dto.MensagemDTO;
 import dbc.company.chatkafka.dto.NomeChat;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.kafka.support.SendResult;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,21 +24,27 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Slf4j
 public class ProdutorService {
-//    @Value(value = "${kafka.topic}")
-//    private String topic;
+
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     private final ObjectMapper objectMapper;
 
-    public void enviarMensagem(MensagemDTO mensagem, List<NomeChat> chats) throws JsonProcessingException {
+    @Value(value = "${spring.kafka.usuario}")
+    private  String usuario;
 
-        String mensagemStr = objectMapper.writeValueAsString(mensagem);
+    public void enviarMensagem(String mensagem, List<NomeChat> chats) throws JsonProcessingException {
+        MensagemDTO mensagemDTO = new MensagemDTO();
+        mensagemDTO.setUsuario(usuario);
+        mensagemDTO.setMensagem(mensagem);
+        mensagemDTO.setDataCriacao(LocalDateTime.now());
+
+        String mensagemStr = objectMapper.writeValueAsString(mensagemDTO);
         chats.forEach(chat -> {
-            MessageBuilder<String> stringMessageBuilder = MessageBuilder.withPayload(mensagemStr)
+                    MessageBuilder<String> stringMessageBuilder = MessageBuilder.withPayload(mensagemStr)
                             .setHeader(KafkaHeaders.TOPIC, chat.getTopico())
                             .setHeader(KafkaHeaders.MESSAGE_KEY, UUID.randomUUID().toString())
-                            .setHeader(KafkaHeaders.PARTITION_ID,chat.getParticao());
+                            .setHeader(KafkaHeaders.PARTITION_ID, chat.getParticao());
 
                     ListenableFuture<SendResult<String, String>> enviadoParaTopico = kafkaTemplate.send(stringMessageBuilder.build());
                     enviadoParaTopico.addCallback(new ListenableFutureCallback<>() {
